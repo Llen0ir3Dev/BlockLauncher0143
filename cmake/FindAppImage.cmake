@@ -77,14 +77,17 @@ function(nexus_create_appimage)
   set(ICONS_DIR ${SHARE_DIR}/icons/hicolor/256x256/apps)
   set(METADIR ${APPDIR}/usr/share/metainfo)
 
+  # Extract desktop file basename
+  get_filename_component(DESKTOP_BASENAME ${ARG_DESKTOP_FILE} NAME)
+
   # Custom command to create AppImage
   add_custom_target(${ARG_APPIMAGE_NAME}-appimage
     COMMAND ${CMAKE_COMMAND} -E make_directory ${BIN_DIR} ${LIB_DIR} ${APPLICATIONS_DIR} ${ICONS_DIR} ${METADIR}
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${ARG_TARGET}> ${BIN_DIR}/
     COMMAND ${CMAKE_COMMAND} -E copy ${ARG_DESKTOP_FILE} ${APPLICATIONS_DIR}/
     COMMAND ${CMAKE_COMMAND} -E copy ${ARG_ICON_FILE} ${ICONS_DIR}/
-    COMMAND ${CMAKE_COMMAND} -E copy ${ARG_DESKTOP_FILE} ${METADIR}/
-    COMMAND ${CMAKE_COMMAND} -E rename ${METADIR}/${CMAKE_FILE_NAME} ${METADIR}/${ARG_APPIMAGE_NAME}.metainfo.xml
+    COMMAND ${CMAKE_COMMAND} -E copy ${ARG_DESKTOP_FILE} ${METADIR}/${DESKTOP_BASENAME}
+    COMMAND ${CMAKE_COMMAND} -E rename ${METADIR}/${DESKTOP_BASENAME} ${METADIR}/${ARG_APPIMAGE_NAME}.metainfo.xml
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     COMMENT "Preparing AppDir for ${ARG_APPIMAGE_NAME}"
   )
