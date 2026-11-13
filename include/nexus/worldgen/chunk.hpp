@@ -34,8 +34,8 @@ struct Chunk {
               surface_height(kChunkSize * kChunkSize, 0),
               biome(kChunkSize * kChunkSize, 0) {}
 
-    static constexpr size_t index(int x, int y, int z) {
-        return (static_cast<size_t>(y) * kChunkSize + z) * kChunkSize + x;
+    static constexpr std::size_t index(int x, int y, int z) {
+        return (static_cast<std::size_t>(y) * kChunkSize + z) * kChunkSize + x;
     }
     static bool in_bounds(int x, int y, int z) {
         return x >= 0 && x < kChunkSize && y >= 0 && y < kChunkHeight && z >= 0 && z < kChunkSize;
@@ -52,7 +52,7 @@ struct Chunk {
     }
     int column_height(int x, int z) const {
         if (x < 0 || x >= kChunkSize || z < 0 || z >= kChunkSize) return 0;
-        return surface_height[static_cast<size_t>(z) * kChunkSize + x];
+        return surface_height[static_cast<std::size_t>(z) * kChunkSize + x];
     }
     int top_solid(int x, int z) const {
         if (x < 0 || x >= kChunkSize || z < 0 || z >= kChunkSize) return -1;
