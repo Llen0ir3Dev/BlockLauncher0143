@@ -5,11 +5,16 @@ on:
     branches: [main, master]
   pull_request:
   workflow_dispatch:
+  release:
+    types: [published]
 
 jobs:
   linux:
     name: Ubuntu 22.04 x86_64
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,7 +26,25 @@ jobs:
             build-essential cmake ninja-build pkg-config \
             libsdl2-dev zlib1g-dev libpng-dev \
             libgl1-mesa-dev libegl1-mesa-dev \
-            glslang-tools python3
+            glslang-tools python3 \
+            fuse libfuse2 \
+            wget ca-certificates
+
+      - name: Install AppImage tools
+        run: |
+          # linuxdeploy
+          wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          chmod +x linuxdeploy-x86_64.AppImage
+          sudo mv linuxdeploy-x86_64.AppImage /usr/local/bin/linuxdeploy
+
+          # appimagetool
+          wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          sudo mv appimagetool-x86_64.AppImage /usr/local/bin/appimagetool
+
+          # Verify
+          linuxdeploy --version
+          appimagetool --version
 
       - name: Configure
         run: |
@@ -29,7 +52,8 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DNEXUS_BUILD_TESTS=ON \
             -DNEXUS_BUILD_RUNTIME=ON \
-            -DNEXUS_BUILD_LAUNCHER=ON
+            -DNEXUS_BUILD_LAUNCHER=ON \
+            -DNEXUS_BUILD_APPIMAGE=ON
 
       - name: Build
         run: cmake --build build -j"$(nproc)"
@@ -37,8 +61,63 @@ jobs:
       - name: Test
         run: ctest --test-dir build --output-on-failure
 
+      - name: Build AppImage
+        if: always()
+        run: |
+          cmake --build build --target NEXUS-MCPE-x86_64-appimage -j"$(nproc)"
+          ls -la build/appimage/
+
+      - name: Test AppImage
+        if: always()
+        run: |
+          APPIMAGE=$(find build/appimage -name "*.AppImage" | head -1)
+          if [ -f "$APPIMAGE" ]; then
+            chmod +x "$APPIMAGE"
+            "$APPIMAGE" --version
+            echo "AppImage test passed: $APPIMAGE"
+          else
+            echo "AppImage not found"
+            exit 1
+          fi
+
+      - name: Upload AppImage artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: NEXUS-MCPE-x86_64-AppImage
+          path: build/appimage/*.AppImage
+          retention-days: 30
+
       - name: Show versions
         if: always()
         run: |
           ./build/nexus version
           ./build/nexus doctor || true
+
+  release:
+    name: Create GitHub Release
+    needs: linux
+    if: github.event_name == 'release' && github.event.action == 'published'
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: Download AppImage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: NEXUS-MCPE-x86_64-AppImage
+          path: release/
+
+      - name: Verify AppImage
+        run: |
+          ls -la release/
+          APPIMAGE=$(find release -name "*.AppImage" | head -1)
+          chmod +x "$APPIMAGE"
+          "$APPIMAGE" --version
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/*.AppImage
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

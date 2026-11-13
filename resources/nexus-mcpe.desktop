@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=NEXUS-MCPE
+Comment=External launcher and modding platform for Minecraft PE 0.14.3
+Exec=nexus-launcher
+Icon=nexus-mcpe
+Terminal=false
+Categories=Game;
+StartupNotify=true
+Keywords=minecraft;launcher;modding;

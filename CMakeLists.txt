@@ -213,3 +213,30 @@ install(DIRECTORY examples/profiles/ DESTINATION ${CMAKE_INSTALL_DATADIR}/nexus-
 install(DIRECTORY documentation/ DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/nexus-mcpe)
 install(FILES README.md LICENSE THIRD_PARTY_NOTICES.md
         DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/nexus-mcpe)
+
+# ---------------------------------------------------------------------------
+# AppImage creation
+# ---------------------------------------------------------------------------
+option(NEXUS_BUILD_APPIMAGE "Build AppImage package" OFF)
+
+if(NEXUS_BUILD_APPIMAGE)
+  list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+  find_package(AppImage QUIET)
+
+  if(AppImage_FOUND AND NEXUS_BUILD_LAUNCHER)
+    nexus_create_appimage(
+      TARGET nexus-launcher
+      APPIMAGE_NAME "NEXUS-MCPE-x86_64"
+      DESKTOP_FILE "${CMAKE_SOURCE_DIR}/resources/nexus-mcpe.desktop"
+      ICON_FILE "${CMAKE_SOURCE_DIR}/resources/nexus-mcpe.png"
+      OUTPUT_DIR "${CMAKE_BINARY_DIR}/appimage"
+      EXTRA_FILES
+        "${CMAKE_SOURCE_DIR}/examples/mods -> usr/share/nexus-mcpe/mods"
+        "${CMAKE_SOURCE_DIR}/examples/shader-packs -> usr/share/nexus-mcpe/shader-packs"
+        "${CMAKE_SOURCE_DIR}/examples/profiles -> usr/share/nexus-mcpe/profiles"
+        "${CMAKE_SOURCE_DIR}/documentation -> usr/share/doc/nexus-mcpe"
+    )
+  elseif(NEXUS_BUILD_LAUNCHER)
+    message(WARNING "AppImage tools (linuxdeploy, appimagetool) not found. Skipping AppImage creation.")
+  endif()
+endif()
