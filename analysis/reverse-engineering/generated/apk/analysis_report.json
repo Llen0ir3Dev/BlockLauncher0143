@@ -1,0 +1,82 @@
+{
+  "apk_path": "minecraft-0.14.3.apk",
+  "analysis_timestamp": "2026-11-13T15:48:28.306222",
+  "analyzer_version": "2.0.0",
+  "apk_info": {
+    "path": "minecraft-0.14.3.apk",
+    "size": 21803588,
+    "sha256": "c4365666ac5c5a65af3c8a94d765e34dc2f525bbca787d9431e0aa091f70f0f6",
+    "size_mb": 20.79
+  },
+  "manifest_analysis": {
+    "package": null,
+    "version_name": null,
+    "version_code": null,
+    "min_sdk": null,
+    "target_sdk": null,
+    "permissions": [],
+    "features": [],
+    "activities": [],
+    "services": [],
+    "providers": [],
+    "uses_features": [],
+    "gl_es_version": null,
+    "debuggable": false,
+    "has_internet_permission": false,
+    "native_lib_name": null,
+    "application_label": null,
+    "parse_methods": [
+      "binary_xml",
+      "text_regex"
+    ],
+    "validation_status": "errors",
+    "validation_issues": [
+      "Missing package name",
+      "Missing version code",
+      "Missing version name",
+      "Missing min SDK",
+      "Missing target SDK"
+    ]
+  },
+  "dex_analysis": null,
+  "native_libraries": null,
+  "asset_inventory": null,
+  "graphics_pipeline": null,
+  "security_analysis": {
+    "signature_valid": true,
+    "apk_integrity": "valid",
+    "permissions_reviewed": true,
+    "debuggable": false,
+    "internet_permission": false,
+    "security_issues": []
+  },
+  "modding_potential": {
+    "technical_potential": "high",
+    "graphics_modding": null,
+    "asset_modding": null,
+    "language_modding": null,
+    "configuration_modding": null,
+    "challenges": [
+      "ARMv7 limitation",
+      "x86_64 incompatibility"
+    ],
+    "recommendations": [
+      "Consider x86 APK for native execution",
+      "Plan for Android container execution"
+    ]
+  },
+  "integration_readiness": {
+    "overall_status": "issues_found",
+    "critical_issues": [
+      "Missing package name",
+      "Missing version code",
+      "Missing version name",
+      "Missing min SDK",
+      "Missing target SDK",
+      "Missing package name"
+    ],
+    "recommended_strategy": "Android container execution with cooperative JNI hooks",
+    "x86_requirement": "x86 APK (version 780140300/780140301) needed for native x86_64 execution",
+    "technical_complexity": "high - requires JNI hook development and Android container setup"
+  }
+}

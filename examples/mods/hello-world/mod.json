@@ -1,0 +1,11 @@
+{
+  "id": "example.hello",
+  "name": "Hello NEXUS",
+  "version": "1.0.0",
+  "author": "NEXUS-MCPE",
+  "description": "Minimal script mod: logs, listens for an event and registers a block.",
+  "apiVersion": "1.0",
+  "type": "script",
+  "entry": "main.js",
+  "events": ["world.loaded", "example.ping"]
+}

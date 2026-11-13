@@ -1,0 +1,11 @@
+{
+  "name": "example",
+  "installId": "",
+  "width": 1280,
+  "height": 720,
+  "fullscreen": false,
+  "shaderPack": "",
+  "texturePacks": [],
+  "mods": ["example.hello"],
+  "createdAt": "2026-01-01T00:00:00Z"
+}

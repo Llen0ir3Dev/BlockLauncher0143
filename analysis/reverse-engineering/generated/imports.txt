@@ -1,0 +1,510 @@
+AAssetManager_open	AAssetManager_open
+AAsset_close	AAsset_close
+AAsset_getBuffer	AAsset_getBuffer
+AAsset_getLength	AAsset_getLength
+AConfiguration_delete	AConfiguration_delete
+AConfiguration_fromAssetManager	AConfiguration_fromAssetManager
+AConfiguration_getCountry	AConfiguration_getCountry
+AConfiguration_getLanguage	AConfiguration_getLanguage
+AConfiguration_new	AConfiguration_new
+AInputEvent_getDeviceId	AInputEvent_getDeviceId
+AInputEvent_getSource	AInputEvent_getSource
+AInputEvent_getType	AInputEvent_getType
+AInputQueue_attachLooper	AInputQueue_attachLooper
+AInputQueue_detachLooper	AInputQueue_detachLooper
+AInputQueue_finishEvent	AInputQueue_finishEvent
+AInputQueue_getEvent	AInputQueue_getEvent
+AInputQueue_preDispatchEvent	AInputQueue_preDispatchEvent
+AKeyEvent_getAction	AKeyEvent_getAction
+AKeyEvent_getKeyCode	AKeyEvent_getKeyCode
+AKeyEvent_getMetaState	AKeyEvent_getMetaState
+AKeyEvent_getRepeatCount	AKeyEvent_getRepeatCount
+ALooper_addFd	ALooper_addFd
+ALooper_pollAll	ALooper_pollAll
+ALooper_prepare	ALooper_prepare
+AMotionEvent_getAction	AMotionEvent_getAction
+AMotionEvent_getAxisValue	AMotionEvent_getAxisValue
+AMotionEvent_getPointerCount	AMotionEvent_getPointerCount
+AMotionEvent_getPointerId	AMotionEvent_getPointerId
+AMotionEvent_getRawX	AMotionEvent_getRawX
+AMotionEvent_getRawY	AMotionEvent_getRawY
+AMotionEvent_getX	AMotionEvent_getX
+AMotionEvent_getY	AMotionEvent_getY
+ANativeActivity_finish	ANativeActivity_finish
+ANativeWindow_setBuffersGeometry	ANativeWindow_setBuffersGeometry
+FMOD_System_Create	FMOD_System_Create
+_ZN4FMOD12ChannelGroup8addGroupEPS0_bPPNS_13DSPConnectionE	FMOD::ChannelGroup::addGroup(FMOD::ChannelGroup*, bool, FMOD::DSPConnection**)
+_ZN4FMOD14ChannelControl15set3DAttributesEPK11FMOD_VECTORS3_S3_	FMOD::ChannelControl::set3DAttributes(FMOD_VECTOR const*, FMOD_VECTOR const*, FMOD_VECTOR const*)
+_ZN4FMOD14ChannelControl4stopEv	FMOD::ChannelControl::stop()
+_ZN4FMOD14ChannelControl7setMuteEb	FMOD::ChannelControl::setMute(bool)
+_ZN4FMOD14ChannelControl8setPitchEf	FMOD::ChannelControl::setPitch(float)
+_ZN4FMOD14ChannelControl9isPlayingEPb	FMOD::ChannelControl::isPlaying(bool*)
+_ZN4FMOD14ChannelControl9setPausedEb	FMOD::ChannelControl::setPaused(bool)
+_ZN4FMOD14ChannelControl9setVolumeEf	FMOD::ChannelControl::setVolume(float)
+_ZN4FMOD5Sound11getSubSoundEiPPS0_	FMOD::Sound::getSubSound(int, FMOD::Sound**)
+_ZN4FMOD5Sound15getNumSubSoundsEPi	FMOD::Sound::getNumSubSounds(int*)
+_ZN4FMOD5Sound19set3DMinMaxDistanceEff	FMOD::Sound::set3DMinMaxDistance(float, float)
+_ZN4FMOD5Sound7releaseEv	FMOD::Sound::release()
+_ZN4FMOD6System10getVersionEPj	FMOD::System::getVersion(unsigned int*)
+_ZN4FMOD6System11createSoundEPKcjP22FMOD_CREATESOUNDEXINFOPPNS_5SoundE	FMOD::System::createSound(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**)
+_ZN4FMOD6System11mixerResumeEv	FMOD::System::mixerResume()
+_ZN4FMOD6System12createStreamEPKcjP22FMOD_CREATESOUNDEXINFOPPNS_5SoundE	FMOD::System::createStream(char const*, unsigned int, FMOD_CREATESOUNDEXINFO*, FMOD::Sound**)
+_ZN4FMOD6System12mixerSuspendEv	FMOD::System::mixerSuspend()
+_ZN4FMOD6System13set3DSettingsEfff	FMOD::System::set3DSettings(float, float, float)
+_ZN4FMOD6System18createChannelGroupEPKcPPNS_12ChannelGroupE	FMOD::System::createChannelGroup(char const*, FMOD::ChannelGroup**)
+_ZN4FMOD6System21getMasterChannelGroupEPPNS_12ChannelGroupE	FMOD::System::getMasterChannelGroup(FMOD::ChannelGroup**)
+_ZN4FMOD6System23set3DListenerAttributesEiPK11FMOD_VECTORS3_S3_S3_	FMOD::System::set3DListenerAttributes(int, FMOD_VECTOR const*, FMOD_VECTOR const*, FMOD_VECTOR const*, FMOD_VECTOR const*)
+_ZN4FMOD6System4initEijPv	FMOD::System::init(int, unsigned int, void*)
+_ZN4FMOD6System5closeEv	FMOD::System::close()
+_ZN4FMOD6System6updateEv	FMOD::System::update()
+_ZN4FMOD6System7releaseEv	FMOD::System::release()
+_ZN4FMOD6System9playSoundEPNS_5SoundEPNS_12ChannelGroupEbPPNS_7ChannelE	FMOD::System::playSound(FMOD::Sound*, FMOD::ChannelGroup*, bool, FMOD::Channel**)
+_ZN4FMOD6System9setOutputE15FMOD_OUTPUTTYPE	FMOD::System::setOutput(FMOD_OUTPUTTYPE)
+_ZNKSs12find_last_ofEPKcjj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_last_of(char const*, unsigned int, unsigned int) const
+_ZNKSs13find_first_ofEPKcjj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_first_of(char const*, unsigned int, unsigned int) const
+_ZNKSs16find_last_not_ofEPKcjj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_last_not_of(char const*, unsigned int, unsigned int) const
+_ZNKSs17find_first_not_ofEPKcjj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::find_first_not_of(char const*, unsigned int, unsigned int) const
+_ZNKSs4findEPKcjj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char const*, unsigned int, unsigned int) const
+_ZNKSs4findEcj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::find(char, unsigned int) const
+_ZNKSs5rfindEPKcjj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::rfind(char const*, unsigned int, unsigned int) const
+_ZNKSs5rfindEcj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::rfind(char, unsigned int) const
+_ZNKSs7compareEPKc	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const
+_ZNKSs7compareERKSs	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const
+_ZNKSt12__basic_fileIcE7is_openEv	std::__basic_file<char>::is_open() const
+_ZNKSt15basic_stringbufIcSt11char_traitsIcESaIcEE3strEv	std::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >::str() const
+_ZNKSt5ctypeIcE13_M_widen_initEv	std::ctype<char>::_M_widen_init() const
+_ZNKSt8__detail20_Prime_rehash_policy11_M_next_bktEj	std::__detail::_Prime_rehash_policy::_M_next_bkt(unsigned int) const
+_ZNKSt8__detail20_Prime_rehash_policy14_M_need_rehashEjjj	std::__detail::_Prime_rehash_policy::_M_need_rehash(unsigned int, unsigned int, unsigned int) const
+_ZNSbIwSt11char_traitsIwESaIwEE4_Rep10_M_destroyERKS1_	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >::_Rep::_M_destroy(std::allocator<wchar_t> const&)
+_ZNSbIwSt11char_traitsIwESaIwEE4_Rep20_S_empty_rep_storageE	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >::_Rep::_S_empty_rep_storage
+_ZNSbIwSt11char_traitsIwESaIwEEC1EPKwRKS1_	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >::basic_string(wchar_t const*, std::allocator<wchar_t> const&)
+_ZNSbIwSt11char_traitsIwESaIwEEC1ERKS2_	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >::basic_string(std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > const&)
+_ZNSbIwSt11char_traitsIwESaIwEEC1EjwRKS1_	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >::basic_string(unsigned int, wchar_t, std::allocator<wchar_t> const&)
+_ZNSbIwSt11char_traitsIwESaIwEED1Ev	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >::~basic_string()
+_ZNSdD2Ev	std::basic_iostream<char, std::char_traits<char> >::~basic_iostream()
+_ZNSi10_M_extractIfEERSiRT_	std::basic_istream<char, std::char_traits<char> >& std::basic_istream<char, std::char_traits<char> >::_M_extract<float>(float&)
+_ZNSi4peekEv	std::basic_istream<char, std::char_traits<char> >::peek()
+_ZNSi7getlineEPcic	std::basic_istream<char, std::char_traits<char> >::getline(char*, int, char)
+_ZNSirsERi	std::basic_istream<char, std::char_traits<char> >::operator>>(int&)
+_ZNSo3putEc	std::basic_ostream<char, std::char_traits<char> >::put(char)
+_ZNSo5flushEv	std::basic_ostream<char, std::char_traits<char> >::flush()
+_ZNSo5tellpEv	std::basic_ostream<char, std::char_traits<char> >::tellp()
+_ZNSo5writeEPKci	std::basic_ostream<char, std::char_traits<char> >::write(char const*, int)
+_ZNSo9_M_insertIPKvEERSoT_	std::basic_ostream<char, std::char_traits<char> >& std::basic_ostream<char, std::char_traits<char> >::_M_insert<void const*>(void const*)
+_ZNSo9_M_insertIbEERSoT_	std::basic_ostream<char, std::char_traits<char> >& std::basic_ostream<char, std::char_traits<char> >::_M_insert<bool>(bool)
+_ZNSo9_M_insertIdEERSoT_	std::basic_ostream<char, std::char_traits<char> >& std::basic_ostream<char, std::char_traits<char> >::_M_insert<double>(double)
+_ZNSo9_M_insertIlEERSoT_	std::basic_ostream<char, std::char_traits<char> >& std::basic_ostream<char, std::char_traits<char> >::_M_insert<long>(long)
+_ZNSo9_M_insertImEERSoT_	std::basic_ostream<char, std::char_traits<char> >& std::basic_ostream<char, std::char_traits<char> >::_M_insert<unsigned long>(unsigned long)
+_ZNSo9_M_insertIxEERSoT_	std::basic_ostream<char, std::char_traits<char> >& std::basic_ostream<char, std::char_traits<char> >::_M_insert<long long>(long long)
+_ZNSo9_M_insertIyEERSoT_	std::basic_ostream<char, std::char_traits<char> >& std::basic_ostream<char, std::char_traits<char> >::_M_insert<unsigned long long>(unsigned long long)
+_ZNSolsEPSt15basic_streambufIcSt11char_traitsIcEE	std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_streambuf<char, std::char_traits<char> >*)
+_ZNSolsEi	std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+_ZNSolsEs	std::basic_ostream<char, std::char_traits<char> >::operator<<(short)
+_ZNSs12_M_leak_hardEv	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_leak_hard()
+_ZNSs12_S_constructEjcRKSaIcE	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_construct(unsigned int, char, std::allocator<char> const&)
+_ZNSs14_M_replace_auxEjjjc	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace_aux(unsigned int, unsigned int, unsigned int, char)
+_ZNSs15_M_replace_safeEjjPKcj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace_safe(unsigned int, unsigned int, char const*, unsigned int)
+_ZNSs4_Rep10_M_destroyERKSaIcE	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Rep::_M_destroy(std::allocator<char> const&)
+_ZNSs4_Rep10_M_disposeERKSaIcE	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Rep::_M_dispose(std::allocator<char> const&)
+_ZNSs4_Rep20_S_empty_rep_storageE	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Rep::_S_empty_rep_storage
+_ZNSs4_Rep9_S_createEjjRKSaIcE	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Rep::_S_create(unsigned int, unsigned int, std::allocator<char> const&)
+_ZNSs4swapERSs	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::swap(std::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+_ZNSs6appendEPKc	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(char const*)
+_ZNSs6appendEPKcj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(char const*, unsigned int)
+_ZNSs6appendERKSs	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+_ZNSs6appendEjc	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::append(unsigned int, char)
+_ZNSs6assignEPKc	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*)
+_ZNSs6assignEPKcj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*, unsigned int)
+_ZNSs6assignERKSs	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+_ZNSs6insertEjPKcj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned int, char const*, unsigned int)
+_ZNSs6insertEjRKSsjj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned int, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int, unsigned int)
+_ZNSs6resizeEjc	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::resize(unsigned int, char)
+_ZNSs7replaceEjjPKcj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned int, unsigned int, char const*, unsigned int)
+_ZNSs7reserveEj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::reserve(unsigned int)
+_ZNSs9_M_mutateEjjj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned int, unsigned int, unsigned int)
+_ZNSs9push_backEc	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)
+_ZNSsC1EPKcRKSaIcE	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, std::allocator<char> const&)
+_ZNSsC1EPKcjRKSaIcE	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(char const*, unsigned int, std::allocator<char> const&)
+_ZNSsC1ERKSs	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+_ZNSsC1ERKSsjj	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned int, unsigned int)
+_ZNSsC1EjcRKSaIcE	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(unsigned int, char, std::allocator<char> const&)
+_ZNSsD1Ev	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()
+_ZNSsaSEPKc	std::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(char const*)
+_ZNSt11logic_errorC2ERKSs	std::logic_error::logic_error(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+_ZNSt12__basic_fileIcED1Ev	std::__basic_file<char>::~__basic_file()
+_ZNSt12future_errorD1Ev	std::future_error::~future_error()
+_ZNSt13__future_base11_State_baseD2Ev	std::__future_base::_State_base::~_State_base()
+_ZNSt13__future_base12_Result_baseC2Ev	std::__future_base::_Result_base::_Result_base()
+_ZNSt13__future_base12_Result_baseD2Ev	std::__future_base::_Result_base::~_Result_base()
+_ZNSt13basic_filebufIcSt11char_traitsIcEE4openEPKcSt13_Ios_Openmode	std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode)
+_ZNSt13basic_filebufIcSt11char_traitsIcEE5closeEv	std::basic_filebuf<char, std::char_traits<char> >::close()
+_ZNSt13basic_filebufIcSt11char_traitsIcEEC1Ev	std::basic_filebuf<char, std::char_traits<char> >::basic_filebuf()
+_ZNSt13random_device7_M_finiEv	std::random_device::_M_fini()
+_ZNSt13random_device7_M_initERKSs	std::random_device::_M_init(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+_ZNSt13random_device9_M_getvalEv	std::random_device::_M_getval()
+_ZNSt14basic_ofstreamIcSt11char_traitsIcEEC1Ev	std::basic_ofstream<char, std::char_traits<char> >::basic_ofstream()
+_ZNSt14basic_ofstreamIcSt11char_traitsIcEED1Ev	std::basic_ofstream<char, std::char_traits<char> >::~basic_ofstream()
+_ZNSt15__exception_ptr13exception_ptr4swapERS0_	std::__exception_ptr::exception_ptr::swap(std::__exception_ptr::exception_ptr&)
+_ZNSt15__exception_ptr13exception_ptrC1ERKS0_	std::__exception_ptr::exception_ptr::exception_ptr(std::__exception_ptr::exception_ptr const&)
+_ZNSt15__exception_ptr13exception_ptrD1Ev	std::__exception_ptr::exception_ptr::~exception_ptr()
+_ZNSt15__exception_ptreqERKNS_13exception_ptrES2_	std::__exception_ptr::operator==(std::__exception_ptr::exception_ptr const&, std::__exception_ptr::exception_ptr const&)
+_ZNSt15basic_stringbufIcSt11char_traitsIcESaIcEE7_M_syncEPcjj	std::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >::_M_sync(char*, unsigned int, unsigned int)
+_ZNSt18condition_variable10notify_allEv	std::condition_variable::notify_all()
+_ZNSt18condition_variable10notify_oneEv	std::condition_variable::notify_one()
+_ZNSt18condition_variable4waitERSt11unique_lockISt5mutexE	std::condition_variable::wait(std::unique_lock<std::mutex>&)
+_ZNSt18condition_variableC1Ev	std::condition_variable::condition_variable()
+_ZNSt18condition_variableD1Ev	std::condition_variable::~condition_variable()
+_ZNSt19basic_ostringstreamIcSt11char_traitsIcESaIcEEC1ESt13_Ios_Openmode	std::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >::basic_ostringstream(std::_Ios_Openmode)
+_ZNSt19basic_ostringstreamIcSt11char_traitsIcESaIcEED1Ev	std::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >::~basic_ostringstream()
+_ZNSt6chrono3_V212steady_clock3nowEv	std::chrono::_V2::steady_clock::now()
+_ZNSt6chrono3_V212system_clock3nowEv	std::chrono::_V2::system_clock::now()
+_ZNSt6localeC1Ev	std::locale::locale()
+_ZNSt6localeD1Ev	std::locale::~locale()
+_ZNSt6thread15_M_start_threadESt10shared_ptrINS_10_Impl_baseEE	std::thread::_M_start_thread(std::shared_ptr<std::thread::_Impl_base>)
+_ZNSt6thread20hardware_concurrencyEv	std::thread::hardware_concurrency()
+_ZNSt6thread4joinEv	std::thread::join()
+_ZNSt8__detail15_List_node_base7_M_hookEPS0_	std::__detail::_List_node_base::_M_hook(std::__detail::_List_node_base*)
+_ZNSt8__detail15_List_node_base9_M_unhookEv	std::__detail::_List_node_base::_M_unhook()
+_ZNSt8ios_base4InitC1Ev	std::ios_base::Init::Init()
+_ZNSt8ios_base4InitD1Ev	std::ios_base::Init::~Init()
+_ZNSt8ios_baseC2Ev	std::ios_base::ios_base()
+_ZNSt8ios_baseD2Ev	std::ios_base::~ios_base()
+_ZNSt9basic_iosIcSt11char_traitsIcEE4initEPSt15basic_streambufIcS1_E	std::basic_ios<char, std::char_traits<char> >::init(std::basic_streambuf<char, std::char_traits<char> >*)
+_ZNSt9basic_iosIcSt11char_traitsIcEE5clearESt12_Ios_Iostate	std::basic_ios<char, std::char_traits<char> >::clear(std::_Ios_Iostate)
+_ZSt11_Hash_bytesPKvjj	std::_Hash_bytes(void const*, unsigned int, unsigned int)
+_ZSt14__once_functor	std::__once_functor
+_ZSt15future_categoryv	std::future_category()
+_ZSt16__get_once_mutexv	std::__get_once_mutex()
+_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_i	std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, int)
+_ZSt16__throw_bad_castv	std::__throw_bad_cast()
+_ZSt17__throw_bad_allocv	std::__throw_bad_alloc()
+_ZSt17rethrow_exceptionNSt15__exception_ptr13exception_ptrE	std::rethrow_exception(std::__exception_ptr::exception_ptr)
+_ZSt18_Rb_tree_decrementPKSt18_Rb_tree_node_base	std::_Rb_tree_decrement(std::_Rb_tree_node_base const*)
+_ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base	std::_Rb_tree_decrement(std::_Rb_tree_node_base*)
+_ZSt18_Rb_tree_incrementPKSt18_Rb_tree_node_base	std::_Rb_tree_increment(std::_Rb_tree_node_base const*)
+_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base	std::_Rb_tree_increment(std::_Rb_tree_node_base*)
+_ZSt19__throw_logic_errorPKc	std::__throw_logic_error(char const*)
+_ZSt20__throw_future_errori	std::__throw_future_error(int)
+_ZSt20__throw_length_errorPKc	std::__throw_length_error(char const*)
+_ZSt20__throw_out_of_rangePKc	std::__throw_out_of_range(char const*)
+_ZSt20__throw_system_errori	std::__throw_system_error(int)
+_ZSt25__throw_bad_function_callv	std::__throw_bad_function_call()
+_ZSt27__set_once_functor_lock_ptrPSt11unique_lockISt5mutexE	std::__set_once_functor_lock_ptr(std::unique_lock<std::mutex>*)
+_ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_	std::_Rb_tree_rebalance_for_erase(std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+_ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_	std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_	std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)
+_ZSt7getlineIcSt11char_traitsIcESaIcEERSt13basic_istreamIT_T0_ES7_RSbIS4_S5_T1_ES4_	std::basic_istream<char, std::char_traits<char> >& std::getline<char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&, char)
+_ZSt7nothrow	std::nothrow
+_ZSt9terminatev	std::terminate()
+_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc	std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)
+_ZStrsIcSt11char_traitsIcESaIcEERSt13basic_istreamIT_T0_ES7_RSbIS4_S5_T1_E	std::basic_istream<char, std::char_traits<char> >& std::operator>><char, std::char_traits<char>, std::allocator<char> >(std::basic_istream<char, std::char_traits<char> >&, std::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+_ZTTSt13basic_fstreamIcSt11char_traitsIcEE	VTT for std::basic_fstream<char, std::char_traits<char> >
+_ZTTSt14basic_ifstreamIcSt11char_traitsIcEE	VTT for std::basic_ifstream<char, std::char_traits<char> >
+_ZTTSt14basic_ofstreamIcSt11char_traitsIcEE	VTT for std::basic_ofstream<char, std::char_traits<char> >
+_ZTTSt18basic_stringstreamIcSt11char_traitsIcESaIcEE	VTT for std::basic_stringstream<char, std::char_traits<char>, std::allocator<char> >
+_ZTTSt19basic_ostringstreamIcSt11char_traitsIcESaIcEE	VTT for std::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >
+_ZTVNSt13__future_base11_State_baseE	vtable for std::__future_base::_State_base
+_ZTVSt12future_error	vtable for std::future_error
+_ZTVSt13basic_filebufIcSt11char_traitsIcEE	vtable for std::basic_filebuf<char, std::char_traits<char> >
+_ZTVSt13basic_fstreamIcSt11char_traitsIcEE	vtable for std::basic_fstream<char, std::char_traits<char> >
+_ZTVSt14basic_ifstreamIcSt11char_traitsIcEE	vtable for std::basic_ifstream<char, std::char_traits<char> >
+_ZTVSt14basic_ofstreamIcSt11char_traitsIcEE	vtable for std::basic_ofstream<char, std::char_traits<char> >
+_ZTVSt15basic_streambufIcSt11char_traitsIcEE	vtable for std::basic_streambuf<char, std::char_traits<char> >
+_ZTVSt15basic_stringbufIcSt11char_traitsIcESaIcEE	vtable for std::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >
+_ZTVSt18basic_stringstreamIcSt11char_traitsIcESaIcEE	vtable for std::basic_stringstream<char, std::char_traits<char>, std::allocator<char> >
+_ZTVSt19basic_ostringstreamIcSt11char_traitsIcESaIcEE	vtable for std::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >
+_ZTVSt9basic_iosIcSt11char_traitsIcEE	vtable for std::basic_ios<char, std::char_traits<char> >
+_ZdaPv	operator delete[](void*)
+_ZdlPv	operator delete(void*)
+_ZdlPvRKSt9nothrow_t	operator delete(void*, std::nothrow_t const&)
+_Znaj	operator new[](unsigned int)
+_Znwj	operator new(unsigned int)
+_ZnwjRKSt9nothrow_t	operator new(unsigned int, std::nothrow_t const&)
+__aeabi_atexit	__aeabi_atexit
+__android_log_print	__android_log_print
+__cxa_atexit	__cxa_atexit
+__cxa_begin_cleanup	__cxa_begin_cleanup
+__cxa_call_unexpected	__cxa_call_unexpected
+__cxa_finalize	__cxa_finalize
+__cxa_guard_acquire	__cxa_guard_acquire
+__cxa_guard_release	__cxa_guard_release
+__cxa_pure_virtual	__cxa_pure_virtual
+__cxa_type_match	__cxa_type_match
+__errno	__errno
+__gnu_Unwind_Find_exidx	__gnu_Unwind_Find_exidx
+__once_proxy	__once_proxy
+__sF	__sF
+__stack_chk_fail	__stack_chk_fail
+__stack_chk_guard	__stack_chk_guard
+_ctype_	_ctype_
+_tolower_tab_	_tolower_tab_
+abort	abort
+accept	accept
+access	access
+acos	acos
+acosf	acosf
+asinf	asinf
+atan	atan
+atan2	atan2
+atan2f	atan2f
+atanf	atanf
+atoi	atoi
+bind	bind
+bsd_signal	bsd_signal
+ceil	ceil
+ceilf	ceilf
+chmod	chmod
+close	close
+closedir	closedir
+compressBound	compressBound
+connect	connect
+cos	cos
+cosf	cosf
+crc32	crc32
+deflate	deflate
+deflateEnd	deflateEnd
+deflateInit2_	deflateInit2_
+deflateInit_	deflateInit_
+difftime	difftime
+eglChooseConfig	eglChooseConfig
+eglCreateContext	eglCreateContext
+eglCreateWindowSurface	eglCreateWindowSurface
+eglDestroyContext	eglDestroyContext
+eglDestroySurface	eglDestroySurface
+eglGetConfigAttrib	eglGetConfigAttrib
+eglGetDisplay	eglGetDisplay
+eglGetProcAddress	eglGetProcAddress
+eglInitialize	eglInitialize
+eglMakeCurrent	eglMakeCurrent
+eglQuerySurface	eglQuerySurface
+eglSwapBuffers	eglSwapBuffers
+eglSwapInterval	eglSwapInterval
+eglTerminate	eglTerminate
+fclose	fclose
+fcntl	fcntl
+fdatasync	fdatasync
+feof	feof
+fflush	fflush
+fgetc	fgetc
+fgets	fgets
+floor	floor
+floorf	floorf
+fmod	fmod
+fmodf	fmodf
+fopen	fopen
+fprintf	fprintf
+fputc	fputc
+fputs	fputs
+fread	fread
+free	free
+freeaddrinfo	freeaddrinfo
+fscanf	fscanf
+fseek	fseek
+fseeko	fseeko
+fsync	fsync
+ftell	ftell
+ftello	ftello
+fwrite	fwrite
+getaddrinfo	getaddrinfo
+getenv	getenv
+geteuid	geteuid
+gethostbyname	gethostbyname
+gethostname	gethostname
+getsockname	getsockname
+getsockopt	getsockopt
+gettimeofday	gettimeofday
+glActiveTexture	glActiveTexture
+glAttachShader	glAttachShader
+glBindBuffer	glBindBuffer
+glBindFramebuffer	glBindFramebuffer
+glBindRenderbuffer	glBindRenderbuffer
+glBindTexture	glBindTexture
+glBlendFunc	glBlendFunc
+glBlendFuncSeparate	glBlendFuncSeparate
+glBufferData	glBufferData
+glBufferSubData	glBufferSubData
+glCheckFramebufferStatus	glCheckFramebufferStatus
+glClear	glClear
+glClearColor	glClearColor
+glClearDepthf	glClearDepthf
+glClearStencil	glClearStencil
+glColorMask	glColorMask
+glCompileShader	glCompileShader
+glCreateProgram	glCreateProgram
+glCreateShader	glCreateShader
+glCullFace	glCullFace
+glDeleteBuffers	glDeleteBuffers
+glDeleteFramebuffers	glDeleteFramebuffers
+glDeleteProgram	glDeleteProgram
+glDeleteRenderbuffers	glDeleteRenderbuffers
+glDeleteShader	glDeleteShader
+glDeleteTextures	glDeleteTextures
+glDepthFunc	glDepthFunc
+glDepthMask	glDepthMask
+glDepthRangef	glDepthRangef
+glDisable	glDisable
+glDrawArrays	glDrawArrays
+glDrawElements	glDrawElements
+glEnable	glEnable
+glEnableVertexAttribArray	glEnableVertexAttribArray
+glFlush	glFlush
+glFramebufferRenderbuffer	glFramebufferRenderbuffer
+glFramebufferTexture2D	glFramebufferTexture2D
+glGenBuffers	glGenBuffers
+glGenFramebuffers	glGenFramebuffers
+glGenRenderbuffers	glGenRenderbuffers
+glGenTextures	glGenTextures
+glGetActiveAttrib	glGetActiveAttrib
+glGetActiveUniform	glGetActiveUniform
+glGetAttribLocation	glGetAttribLocation
+glGetError	glGetError
+glGetIntegerv	glGetIntegerv
+glGetProgramInfoLog	glGetProgramInfoLog
+glGetProgramiv	glGetProgramiv
+glGetShaderInfoLog	glGetShaderInfoLog
+glGetShaderPrecisionFormat	glGetShaderPrecisionFormat
+glGetShaderiv	glGetShaderiv
+glGetString	glGetString
+glGetTexParameteriv	glGetTexParameteriv
+glGetUniformLocation	glGetUniformLocation
+glIsTexture	glIsTexture
+glLinkProgram	glLinkProgram
+glPolygonOffset	glPolygonOffset
+glReleaseShaderCompiler	glReleaseShaderCompiler
+glRenderbufferStorage	glRenderbufferStorage
+glScissor	glScissor
+glShaderSource	glShaderSource
+glStencilFuncSeparate	glStencilFuncSeparate
+glStencilMask	glStencilMask
+glStencilOpSeparate	glStencilOpSeparate
+glTexImage2D	glTexImage2D
+glTexParameteri	glTexParameteri
+glTexSubImage2D	glTexSubImage2D
+glUniform1fv	glUniform1fv
+glUniform1i	glUniform1i
+glUniform1iv	glUniform1iv
+glUniform2fv	glUniform2fv
+glUniform2iv	glUniform2iv
+glUniform3fv	glUniform3fv
+glUniform3iv	glUniform3iv
+glUniform4fv	glUniform4fv
+glUniform4iv	glUniform4iv
+glUniformMatrix2fv	glUniformMatrix2fv
+glUniformMatrix3fv	glUniformMatrix3fv
+glUniformMatrix4fv	glUniformMatrix4fv
+glUseProgram	glUseProgram
+glVertexAttribPointer	glVertexAttribPointer
+glViewport	glViewport
+gmtime	gmtime
+inet_addr	inet_addr
+inet_ntoa	inet_ntoa
+inet_ntop	inet_ntop
+inflate	inflate
+inflateEnd	inflateEnd
+inflateInit2_	inflateInit2_
+inflateInit_	inflateInit_
+ioctl	ioctl
+ldexp	ldexp
+listen	listen
+localtime	localtime
+localtime_r	localtime_r
+logf	logf
+malloc	malloc
+mbstowcs	mbstowcs
+memcmp	memcmp
+memcpy	memcpy
+memmove	memmove
+memset	memset
+mkdir	mkdir
+mktime	mktime
+mmap	mmap
+munmap	munmap
+nanosleep	nanosleep
+nearbyint	nearbyint
+open	open
+opendir	opendir
+perror	perror
+pipe	pipe
+pow	pow
+powf	powf
+pread	pread
+printf	printf
+pthread_attr_init	pthread_attr_init
+pthread_attr_setdetachstate	pthread_attr_setdetachstate
+pthread_attr_setschedparam	pthread_attr_setschedparam
+pthread_attr_setstacksize	pthread_attr_setstacksize
+pthread_cond_broadcast	pthread_cond_broadcast
+pthread_cond_destroy	pthread_cond_destroy
+pthread_cond_init	pthread_cond_init
+pthread_cond_signal	pthread_cond_signal
+pthread_cond_timedwait	pthread_cond_timedwait
+pthread_cond_wait	pthread_cond_wait
+pthread_create	pthread_create
+pthread_equal	pthread_equal
+pthread_getspecific	pthread_getspecific
+pthread_key_create	pthread_key_create
+pthread_key_delete	pthread_key_delete
+pthread_mutex_destroy	pthread_mutex_destroy
+pthread_mutex_init	pthread_mutex_init
+pthread_mutex_lock	pthread_mutex_lock
+pthread_mutex_unlock	pthread_mutex_unlock
+pthread_mutexattr_destroy	pthread_mutexattr_destroy
+pthread_mutexattr_init	pthread_mutexattr_init
+pthread_once	pthread_once
+pthread_self	pthread_self
+pthread_setname_np	pthread_setname_np
+pthread_setspecific	pthread_setspecific
+putchar	putchar
+puts	puts
+raise	raise
+read	read
+readdir	readdir
+realloc	realloc
+recv	recv
+recvfrom	recvfrom
+remove	remove
+rename	rename
+rmdir	rmdir
+round	round
+sched_yield	sched_yield
+select	select
+send	send
+sendto	sendto
+setsockopt	setsockopt
+shutdown	shutdown
+sigaction	sigaction
+sin	sin
+sinf	sinf
+snprintf	snprintf
+socket	socket
+sprintf	sprintf
+sscanf	sscanf
+stat	stat
+strcasecmp	strcasecmp
+strcat	strcat
+strchr	strchr
+strcmp	strcmp
+strcpy	strcpy
+strcspn	strcspn
+strerror	strerror
+strftime	strftime
+strlen	strlen
+strncasecmp	strncasecmp
+strncmp	strncmp
+strncpy	strncpy
+strpbrk	strpbrk
+strrchr	strrchr
+strspn	strspn
+strstr	strstr
+strtod	strtod
+strtol	strtol
+strtoull	strtoull
+tanf	tanf
+time	time
+trunc	trunc
+unlink	unlink
+usleep	usleep
+utime	utime
+vsnprintf	vsnprintf
+wcstombs	wcstombs
+write	write

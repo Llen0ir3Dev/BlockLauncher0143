@@ -1,0 +1,23 @@
+# Build output
+build/
+build-*/
+out/
+cmake-build-*/
+
+# Proprietary / user-supplied files (never commit or package)
+original/
+external/
+*.apk
+*.zip
+NEXUS-MCPE-Linux.zip
+
+# Large derived symbol dumps from proprietary binaries
+analysis/symbols/
+
+# Logs, caches, editor files
+*.log
+.cache/
+.idea/
+.vscode/
+*.swp
+/bin/*

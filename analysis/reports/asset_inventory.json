@@ -1,0 +1,370 @@
+{
+  "apk_sha256": "c4365666ac5c5a65af3c8a94d765e34dc2f525bbca787d9431e0aa091f70f0f6",
+  "files": 1584,
+  "asset_files": 1493,
+  "asset_directories": {
+    "assets/images": {
+      "files": 947,
+      "uncompressed_bytes": 11567830
+    },
+    "assets/items.json": {
+      "files": 1,
+      "uncompressed_bytes": 13178
+    },
+    "assets/loc": {
+      "files": 33,
+      "uncompressed_bytes": 4491191
+    },
+    "assets/materials": {
+      "files": 26,
+      "uncompressed_bytes": 53126
+    },
+    "assets/shaders": {
+      "files": 41,
+      "uncompressed_bytes": 53278
+    },
+    "assets/sounds": {
+      "files": 414,
+      "uncompressed_bytes": 6901949
+    },
+    "assets/splashes.json": {
+      "files": 1,
+      "uncompressed_bytes": 7103
+    },
+    "assets/ui": {
+      "files": 30,
+      "uncompressed_bytes": 347614
+    }
+  },
+  "shader_count": 41,
+  "shader_files": [
+    {
+      "path": "assets/shaders/cloud.vertex",
+      "size": 1129,
+      "crc32": "8b24690a"
+    },
+    {
+      "path": "assets/shaders/color.fragment",
+      "size": 676,
+      "crc32": "bbabcfad"
+    },
+    {
+      "path": "assets/shaders/color.vertex",
+      "size": 706,
+      "crc32": "87bd9c2b"
+    },
+    {
+      "path": "assets/shaders/color_ex.fragment",
+      "size": 723,
+      "crc32": "a95dafb2"
+    },
+    {
+      "path": "assets/shaders/color_texture.fragment",
+      "size": 2276,
+      "crc32": "72d370f1"
+    },
+    {
+      "path": "assets/shaders/color_uv.vertex",
+      "size": 1780,
+      "crc32": "7853a344"
+    },
+    {
+      "path": "assets/shaders/current_color.fragment",
+      "size": 749,
+      "crc32": "ae88e8c5"
+    },
+    {
+      "path": "assets/shaders/entity.fragment",
+      "size": 2959,
+      "crc32": "2e9810aa"
+    },
+    {
+      "path": "assets/shaders/entity.vertex",
+      "size": 3266,
+      "crc32": "1758226f"
+    },
+    {
+      "path": "assets/shaders/flat_white.fragment",
+      "size": 657,
+      "crc32": "9e9dec4f"
+    },
+    {
+      "path": "assets/shaders/hologram_sr.fragment",
+      "size": 216,
+      "crc32": "aec6e334"
+    },
+    {
+      "path": "assets/shaders/hologram_sr.vertex",
+      "size": 349,
+      "crc32": "feee6858"
+    },
+    {
+      "path": "assets/shaders/hologram_texture_stereo.fragment",
+      "size": 803,
+      "crc32": "f39ab910"
+    },
+    {
+      "path": "assets/shaders/holoroom_inner_skirt.fragment",
+      "size": 812,
+      "crc32": "f851fd21"
+    },
+    {
+      "path": "assets/shaders/holoroom_inner_skirt.vertex",
+      "size": 842,
+      "crc32": "dceb5e00"
+    },
+    {
+      "path": "assets/shaders/holoroom_tableSurface.fragment",
+      "size": 812,
+      "crc32": "f851fd21"
+    },
+    {
+      "path": "assets/shaders/holoroom_tableSurface.vertex",
+      "size": 842,
+      "crc32": "dceb5e00"
+    },
+    {
+      "path": "assets/shaders/holoroom_terrain_endcap.fragment",
+      "size": 812,
+      "crc32": "f851fd21"
+    },
+    {
+      "path": "assets/shaders/holoroom_terrain_endcap.vertex",
+      "size": 842,
+      "crc32": "dceb5e00"
+    },
+    {
+      "path": "assets/shaders/iteminhand.fragment",
+      "size": 821,
+      "crc32": "218b488a"
+    },
+    {
+      "path": "assets/shaders/normal_as_color.vertex",
+      "size": 748,
+      "crc32": "59f94002"
+    },
+    {
+      "path": "assets/shaders/position.vertex",
+      "size": 636,
+      "crc32": "687ebb39"
+    },
+    {
+      "path": "assets/shaders/rain_snow.fragment",
+      "size": 1560,
+      "crc32": "67bdf7a9"
+    },
+    {
+      "path": "assets/shaders/rain_snow.vertex",
+      "size": 2890,
+      "crc32": "eb59db8d"
+    },
+    {
+      "path": "assets/shaders/renderchunk.fragment",
+      "size": 2167,
+      "crc32": "e1bedf12"
+    },
+    {
+      "path": "assets/shaders/renderchunk.vertex",
+      "size": 3607,
+      "crc32": "51b42819"
+    },
+    {
+      "path": "assets/shaders/sky.vertex",
+      "size": 825,
+      "crc32": "d0b77655"
+    },
+    {
+      "path": "assets/shaders/stars.fragment",
+      "size": 756,
+      "crc32": "50a98ce8"
+    },
+    {
+      "path": "assets/shaders/text.fragment",
+      "size": 976,
+      "crc32": "1a3020dd"
+    },
+    {
+      "path": "assets/shaders/texture.fragment",
+      "size": 933,
+      "crc32": "4d3d80ea"
+    },
+    {
+      "path": "assets/shaders/texture_blend.fragment",
+      "size": 1121,
+      "crc32": "229f1420"
+    },
+    {
+      "path": "assets/shaders/texture_ccolor.fragment",
+      "size": 984,
+      "crc32": "834cb458"
+    },
+    {
+      "path": "assets/shaders/texture_cutout.fragment",
+      "size": 945,
+      "crc32": "859bba96"
+    },
+    {
+      "path": "assets/shaders/uniforms.json",
+      "size": 4457,
+      "crc32": "616222d9"
+    },
+    {
+      "path": "assets/shaders/util.h",
+      "size": 3316,
+      "crc32": "13b025f8"
+    },
+    {
+      "path": "assets/shaders/uv.vertex",
+      "size": 825,
+      "crc32": "1bb86758"
+    },
+    {
+      "path": "assets/shaders/uv_as_color.fragment",
+      "size": 694,
+      "crc32": "86a4d6c2"
+    },
+    {
+      "path": "assets/shaders/uv_blend.vertex",
+      "size": 920,
+      "crc32": "32bab838"
+    },
+    {
+      "path": "assets/shaders/uv_scale.vertex",
+      "size": 881,
+      "crc32": "581cba66"
+    },
+    {
+      "path": "assets/shaders/weather.fragment",
+      "size": 1078,
+      "crc32": "606342e8"
+    },
+    {
+      "path": "assets/shaders/weather.vertex",
+      "size": 887,
+      "crc32": "b0ad8b90"
+    }
+  ],
+  "material_count": 26,
+  "material_files": [
+    {
+      "path": "assets/materials/HoloLens/common.json",
+      "size": 243
+    },
+    {
+      "path": "assets/materials/HoloLens/entity.material",
+      "size": 3248
+    },
+    {
+      "path": "assets/materials/HoloLens/fancy.material",
+      "size": 214
+    },
+    {
+      "path": "assets/materials/HoloLens/hologram.material",
+      "size": 6927
+    },
+    {
+      "path": "assets/materials/HoloLens/hologram_fancy.json",
+      "size": 337
+    },
+    {
+      "path": "assets/materials/HoloLens/hologram_sad.json",
+      "size": 642
+    },
+    {
+      "path": "assets/materials/HoloLens/particles.material",
+      "size": 548
+    },
+    {
+      "path": "assets/materials/HoloLens/sad.material",
+      "size": 212
+    },
+    {
+      "path": "assets/materials/HoloLens/shadows.material",
+      "size": 2656
+    },
+    {
+      "path": "assets/materials/HoloLens/sky.material",
+      "size": 838
+    },
+    {
+      "path": "assets/materials/HoloLens/terrain.material",
+      "size": 3094
+    },
+    {
+      "path": "assets/materials/HoloLens/ui.material",
+      "size": 5846
+    },
+    {
+      "path": "assets/materials/HoloLens/ui3D.material",
+      "size": 3913
+    },
+    {
+      "path": "assets/materials/common.json",
+      "size": 198
+    },
+    {
+      "path": "assets/materials/entity.material",
+      "size": 3250
+    },
+    {
+      "path": "assets/materials/fancy.json",
+      "size": 290
+    },
+    {
+      "path": "assets/materials/fancy.material",
+      "size": 166
+    },
+    {
+      "path": "assets/materials/hologram.material",
+      "size": 4115
+    },
+    {
+      "path": "assets/materials/particles.material",
+      "size": 442
+    },
+    {
+      "path": "assets/materials/sad.json",
+      "size": 237
+    },
+    {
+      "path": "assets/materials/sad.material",
+      "size": 161
+    },
+    {
+      "path": "assets/materials/shadows.material",
+      "size": 2441
+    },
+    {
+      "path": "assets/materials/sky.material",
+      "size": 698
+    },
+    {
+      "path": "assets/materials/terrain.material",
+      "size": 3861
+    },
+    {
+      "path": "assets/materials/ui.material",
+      "size": 5185
+    },
+    {
+      "path": "assets/materials/ui3D.material",
+      "size": 3364
+    }
+  ],
+  "image_count": 934,
+  "sound_count": 414,
+  "native_libraries": [
+    {
+      "path": "lib/armeabi-v7a/libfmod.so",
+      "size": 1186316
+    },
+    {
+      "path": "lib/armeabi-v7a/libgnustl_shared.so",
+      "size": 661132
+    },
+    {
+      "path": "lib/armeabi-v7a/libminecraftpe.so",
+      "size": 7711868
+    }
+  ]
+}

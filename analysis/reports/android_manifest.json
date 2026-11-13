@@ -1,0 +1,185 @@
+{
+  "elements": [
+    {
+      "name": "manifest",
+      "attributes": {
+        "versionCode": 760140300,
+        "versionName": "0.14.3",
+        "installLocation": 2,
+        "package": "com.mojang.minecraftpe",
+        "platformBuildVersionCode": 22,
+        "platformBuildVersionName": "5.1.1-1819727"
+      }
+    },
+    {
+      "name": "uses-feature",
+      "attributes": {
+        "glEsVersion": 131072,
+        "required": true
+      }
+    },
+    {
+      "name": "uses-sdk",
+      "attributes": {
+        "minSdkVersion": 17,
+        "targetSdkVersion": 22
+      }
+    },
+    {
+      "name": "uses-feature",
+      "attributes": {
+        "name": "android.hardware.touchscreen",
+        "required": false
+      }
+    },
+    {
+      "name": "uses-permission",
+      "attributes": {
+        "name": "android.permission.INTERNET"
+      }
+    },
+    {
+      "name": "uses-permission",
+      "attributes": {
+        "name": "com.android.vending.BILLING"
+      }
+    },
+    {
+      "name": "uses-permission",
+      "attributes": {
+        "name": "android.permission.ACCESS_NETWORK_STATE"
+      }
+    },
+    {
+      "name": "uses-permission",
+      "attributes": {
+        "name": "android.permission.WRITE_EXTERNAL_STORAGE"
+      }
+    },
+    {
+      "name": "uses-permission",
+      "attributes": {
+        "name": "android.permission.VIBRATE"
+      }
+    },
+    {
+      "name": "application",
+      "attributes": {
+        "label": "reference:0x7f04003a",
+        "icon": "reference:0x7f020004"
+      }
+    },
+    {
+      "name": "activity",
+      "attributes": {
+        "theme": "reference:0x01030007",
+        "label": "reference:0x7f04003d",
+        "name": "com.mojang.minecraftpe.MainActivity",
+        "debuggable": false,
+        "excludeFromRecents": false,
+        "launchMode": 1,
+        "screenOrientation": 6,
+        "configChanges": 1073745919,
+        "alwaysRetainTaskState": true
+      }
+    },
+    {
+      "name": "meta-data",
+      "attributes": {
+        "name": "android.app.lib_name",
+        "value": "minecraftpe"
+      }
+    },
+    {
+      "name": "intent-filter",
+      "attributes": {}
+    },
+    {
+      "name": "action",
+      "attributes": {
+        "name": "android.intent.action.MAIN"
+      }
+    },
+    {
+      "name": "category",
+      "attributes": {
+        "name": "android.intent.category.LAUNCHER"
+      }
+    },
+    {
+      "name": "intent-filter",
+      "attributes": {}
+    },
+    {
+      "name": "action",
+      "attributes": {
+        "name": "android.intent.action.VIEW"
+      }
+    },
+    {
+      "name": "category",
+      "attributes": {
+        "name": "android.intent.category.DEFAULT"
+      }
+    },
+    {
+      "name": "category",
+      "attributes": {
+        "name": "android.intent.category.BROWSABLE"
+      }
+    },
+    {
+      "name": "data",
+      "attributes": {
+        "mimeType": "text/plain",
+        "scheme": "minecraft"
+      }
+    },
+    {
+      "name": "meta-data",
+      "attributes": {
+        "name": "xperiaplayoptimized_content",
+        "resource": "reference:0x7f04003c"
+      }
+    },
+    {
+      "name": "meta-data",
+      "attributes": {
+        "name": "game_display_name",
+        "resource": "reference:0x7f04003a"
+      }
+    },
+    {
+      "name": "meta-data",
+      "attributes": {
+        "name": "game_icon",
+        "resource": "reference:0x7f020007"
+      }
+    },
+    {
+      "name": "uses-library",
+      "attributes": {
+        "name": "xperiaplaycertified",
+        "required": false
+      }
+    },
+    {
+      "name": "receiver",
+      "attributes": {
+        "name": "com.amazon.device.iap.ResponseReceiver"
+      }
+    },
+    {
+      "name": "intent-filter",
+      "attributes": {}
+    },
+    {
+      "name": "action",
+      "attributes": {
+        "name": "com.amazon.inapp.purchasing.NOTIFY",
+        "permission": "com.amazon.inapp.purchasing.Permission.NOTIFY",
+        "windowSoftInputMode": 16
+      }
+    }
+  ]
+}

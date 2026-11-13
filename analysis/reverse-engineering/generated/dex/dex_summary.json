@@ -1,0 +1,4390 @@
+{
+  "path": "/root/mcpelinux/analysis/reverse-engineering/generated/apk/classes.dex",
+  "size": 1468384,
+  "header_size": 112,
+  "file_size": 1468384,
+  "checksum": "fe6d0e3e",
+  "signature": "df3a609331d13cb13fc2686cb60649e3e37899bc",
+  "string_ids": 11037,
+  "type_ids": 1682,
+  "proto_ids": 2150,
+  "field_ids": 3931,
+  "method_ids": 8894,
+  "class_defs": 1053,
+  "packages": [
+    [
+      "com.microsoft.onlineid.interop.xbox.ui",
+      77
+    ],
+    [
+      "com.google.gson.internal.bind",
+      65
+    ],
+    [
+      "com.google.gson.internal",
+      53
+    ],
+    [
+      "com.microsoft.cll.android",
+      53
+    ],
+    [
+      "com.microsoft.bond",
+      47
+    ],
+    [
+      "com.google.gson",
+      44
+    ],
+    [
+      "com.microsoft.onlineid.interop.xbox.toolkit",
+      40
+    ],
+    [
+      "com.mojang.minecraftpe",
+      38
+    ],
+    [
+      "com.microsoft.onlineid.sts.response.parsers",
+      32
+    ],
+    [
+      "com.microsoft.onlineid.sts",
+      30
+    ],
+    [
+      "com.microsoft.onlineid.internal.ui",
+      28
+    ],
+    [
+      "com.microsoft.onlineid.internal",
+      26
+    ],
+    [
+      "Microsoft.Telemetry.Extensions",
+      25
+    ],
+    [
+      "com.microsoft.onlineid.interop",
+      25
+    ],
+    [
+      "com.microsoft.onlineid.interop.xbox.model",
+      25
+    ],
+    [
+      "com.microsoft.onlineid.interop.xbox.util",
+      22
+    ],
+    [
+      "com.googleplay.util",
+      20
+    ],
+    [
+      "com.microsoft.onlineid",
+      19
+    ],
+    [
+      "com.amazon.device.iap.model",
+      18
+    ],
+    [
+      "com.microsoft.onlineid.internal.log",
+      17
+    ],
+    [
+      "com.microsoft.onlineid.interop.xbox.jobs",
+      17
+    ],
+    [
+      "com.microsoft.bond.internal",
+      14
+    ],
+    [
+      "com.microsoft.onlineid.internal.sso.service.operation",
+      12
+    ],
+    [
+      "com.microsoft.onlineid.internal.sso.client.request",
+      11
+    ],
+    [
+      "com.microsoft.onlineid.sdk",
+      11
+    ],
+    [
+      "com.microsoft.telemetry",
+      11
+    ],
+    [
+      "Microsoft.Telemetry",
+      10
+    ],
+    [
+      "com.amazon.device.iap.internal.b",
+      10
+    ],
+    [
+      "com.microsoft.bond.io",
+      10
+    ],
+    [
+      "com.microsoft.onlineid.ui",
+      10
+    ],
+    [
+      "com.microsoft.onlineid.internal.configuration",
+      9
+    ],
+    [
+      "com.microsoft.onlineid.internal.sso.client",
+      9
+    ],
+    [
+      "com.microsoft.onlineid.sts.request",
+      9
+    ],
+    [
+      "com.amazon.device.iap.internal.model",
+      8
+    ],
+    [
+      "com.mojang.minecraftpe.store.googleplay",
+      8
+    ],
+    [
+      "com.amazon.device.iap.internal.util",
+      7
+    ],
+    [
+      "com.microsoft.onlineid.analytics",
+      7
+    ],
+    [
+      "com.microsoft.onlineid.internal.sso",
+      7
+    ],
+    [
+      "com.microsoft.onlineid.internal.storage",
+      7
+    ],
+    [
+      "com.microsoft.onlineid.interop.xbox.services",
+      7
+    ]
+  ],
+  "classes": [
+    {
+      "descriptor": "LMicrosoft/Telemetry/Base$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Data$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Domain$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Envelope$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extension$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/TracingEventLevel;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/android$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/app$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/cloud$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/device$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/ingest$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/ios$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/javascript$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/os$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/sll$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/user$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/utc$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/xbox$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/PurchasingListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/PurchasingService;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/ResponseReceiver;",
+      "superclass": "Landroid/content/BroadcastReceiver;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/a/b;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/a/c$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/a;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/a;",
+      "superclass": "Ljava/lang/RuntimeException;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/b/a$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/b;",
+      "superclass": "Lcom/amazon/android/framework/prompt/SimplePrompt;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/d;",
+      "superclass": "Ljava/lang/RuntimeException;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/e$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/e;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/h;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/i;",
+      "superclass": "Lcom/amazon/android/framework/task/command/AbstractCommandTask;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/c/a$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/c/a;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/c/b;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/c/c;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/c/d;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/c/e;",
+      "superclass": "Ljava/lang/Exception;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/c;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/d;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/e;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/model/ProductBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/model/ProductDataResponseBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/model/PurchaseResponseBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/model/PurchaseUpdatesResponseBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/model/ReceiptBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/model/UserDataBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/model/UserDataResponseBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/model/a;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/util/MetricsHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/util/a$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/util/a;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/util/b;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/util/c;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/util/d;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/util/e;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/FulfillmentResult;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/Product$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/Product;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/ProductDataResponse$RequestStatus;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/ProductDataResponse;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/ProductType;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/PurchaseResponse$RequestStatus;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/PurchaseResponse;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/PurchaseUpdatesResponse$RequestStatus;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/PurchaseUpdatesResponse;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/Receipt;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/RequestId$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/RequestId;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/UserData$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/UserData;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/UserDataResponse$RequestStatus;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/UserDataResponse;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/model/package-info;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/package-info;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/android/vending/billing/IInAppBillingService;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/ExclusionStrategy;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/FieldAttributes;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/FieldNamingStrategy;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/Gson;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/GsonBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/InstanceCreator;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonDeserializationContext;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonDeserializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonElement;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonParseException;",
+      "superclass": "Ljava/lang/RuntimeException;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonParser;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonSerializationContext;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonSerializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonStreamParser;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/LongSerializationPolicy;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/TreeTypeAdapter$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/TypeAdapter;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/TypeAdapterFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/annotations/Expose;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/annotations/JsonAdapter;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/annotations/SerializedName;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/annotations/Since;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/annotations/Until;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/$Gson$Preconditions;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/$Gson$Types$GenericArrayTypeImpl;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/$Gson$Types$ParameterizedTypeImpl;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/$Gson$Types$WildcardTypeImpl;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/$Gson$Types;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/JsonReaderInternalAccess;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LazilyParsedNumber;",
+      "superclass": "Ljava/lang/Number;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap$AvlBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap$AvlIterator;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap$EntrySet;",
+      "superclass": "Ljava/util/AbstractSet;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap$KeySet;",
+      "superclass": "Ljava/util/AbstractSet;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap$LinkedTreeMapIterator;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap$Node;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap;",
+      "superclass": "Ljava/util/AbstractMap;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedTreeMap$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedTreeMap$EntrySet;",
+      "superclass": "Ljava/util/AbstractSet;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedTreeMap$KeySet;",
+      "superclass": "Ljava/util/AbstractSet;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedTreeMap$LinkedTreeMapIterator;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedTreeMap$Node;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedTreeMap;",
+      "superclass": "Ljava/util/AbstractMap;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ObjectConstructor;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/Primitives;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/Streams$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/Streams$AppendableWriter$CurrentWrite;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/Streams$AppendableWriter;",
+      "superclass": "Ljava/io/Writer;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/Streams;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/UnsafeAllocator;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/JsonTreeReader$1;",
+      "superclass": "Ljava/io/Reader;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/JsonTreeWriter$1;",
+      "superclass": "Ljava/io/Writer;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/ObjectTypeAdapter$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$36;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/util/ISO8601Utils;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/reflect/TypeToken;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/stream/JsonReader;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/stream/JsonScope;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/stream/JsonToken;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/stream/JsonWriter;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/stream/MalformedJsonException;",
+      "superclass": "Ljava/io/IOException;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/Base64;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/Base64DecoderException;",
+      "superclass": "Ljava/lang/Exception;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabException;",
+      "superclass": "Ljava/lang/Exception;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$2$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$3$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$3$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$OnConsumeFinishedListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$OnConsumeMultiFinishedListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$OnIabPurchaseFinishedListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$OnIabSetupFinishedListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper$QueryInventoryFinishedListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/IabResult;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/Inventory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/Purchase;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/Security;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/googleplay/util/SkuDetails;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/BondBlob;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/BondDataType;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/BondException;",
+      "superclass": "Ljava/lang/RuntimeException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/BondMirror;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/BondSerializable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Box$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/CompactBinaryReader$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/CompactBinaryWriter$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/FieldDef$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/GUID$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/List$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Metadata$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Modifier;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Polymorphic$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/ProtocolCapability;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/ProtocolReader$FieldTag;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/ProtocolReader$ListTag;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/ProtocolReader$MapTag;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/ProtocolReader;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/ProtocolType;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/ProtocolVersion;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/ProtocolWriter;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/SchemaDef$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/SerializableExceptionBase$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/StructDef$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Transcoder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/TypeDef$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Variant$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Vector$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Void$Schema;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/CompactBinaryByteCounterWriter$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/CompactBinaryV2Reader$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/DecimalHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/IntArrayStack;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/IntegerHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/Marshaler;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/ProtocolHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/ReadHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/SkipHelper$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/SkipHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/StringHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/BondStream;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/Seekable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/AbstractHandler$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/AbstractHandler;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/AbstractSettings;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/BuildConfig;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/ClientTelemetry;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Cll$EventLatency;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Cll$EventPersistence;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/CorrelationVector;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventBatcher$BatchFullException;",
+      "superclass": "Ljava/lang/Exception;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventBatcher;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventCompressor;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventHandler$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventQueueWriter$SendResult;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventQueueWriter;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventSender;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventSensitivity;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventSerializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/FileStorage$FileFullException;",
+      "superclass": "Ljava/lang/Exception;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/ICll;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/ICllEvents;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/ILogger;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/IStorage;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/ITicketCallback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Internal/BondJsonSerializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Internal/BuildConfig;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Pair;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/PartA;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/PreSerializedEvent;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/ScheduledWorker;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/SerializedEvent;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/SettingsStore$Settings;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/SettingsStore$UpdateListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/SettingsStore;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/SynchronizedArrayList;",
+      "superclass": "Ljava/util/ArrayList;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/TicketCallbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/TicketHeaders;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/TicketManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/TicketObject;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Tuple;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Verbosity;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/AccountManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ISecurityScope;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/OnlineIdConfiguration$PreferredSignUpMemberNameType;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/OnlineIdConfiguration;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/SignInOptions;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/Ticket;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/UserAccount;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/analytics/IClientAnalytics;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/analytics/ITimedAnalyticsEvent;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/analytics/MsaExceptionParser;",
+      "superclass": "Lcom/google/android/gms/analytics/StandardExceptionParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/exception/AuthenticationException;",
+      "superclass": "Ljava/lang/Exception;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ActivityResultSender$ResultType;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ActivityResultSender;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ApiRequest$Extras;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ApiRequest;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ApiRequestResultReceiver;",
+      "superclass": "Landroid/os/ResultReceiver;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ApiResult$Extras;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ApiResult;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Applications;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Assertion;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/BlockingApiRequestResultReceiver$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/BlockingApiRequestResultReceiver$Result;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Bundles;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/IFailureCallback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/IUserInteractionCallback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Integers;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Intents$DataBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Intents;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/MsaService;",
+      "superclass": "Landroid/app/IntentService;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/NetworkConnectivity;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Objects;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/PackageInfoHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/PendingIntentBuilder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Resources;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Strings;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/Uris;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/configuration/AbstractSettings$Editor;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/configuration/AbstractSettings;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/configuration/BuildConfiguration;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/configuration/Environment;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/configuration/Experiment;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/configuration/Flight;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/configuration/ISetting;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/configuration/Settings;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/CrashErrorReportHandler$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/CrashErrorReportHandler$InstanceHolder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/CrashErrorReportHandler;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/ErrorReportManager$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/ErrorReportManager$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/ErrorReportManager$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/ErrorReportManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/IRedactable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/LogInstance;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/Logger;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/Redactor$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/Redactor$RedactionType;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/Redactor;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/SendLogsHandler;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/profile/DownloadProfileImageTask;",
+      "superclass": "Landroid/os/AsyncTask;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/profile/ProfileManager$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/profile/ProfileManager$JsonParser;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/profile/ProfileManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/BundleMarshaller$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/BundleMarshaller;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/SignatureVerifier;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/SsoService;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/SsoServiceError;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/BackupService;",
+      "superclass": "Landroid/app/IntentService;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/MigrationManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/MsaSsoClient;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/ServiceFinder$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/ServiceFinder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/SsoResponse;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/SsoRunnable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/IMsaSsoService;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/MsaSsoService;",
+      "superclass": "Landroid/app/Service;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/storage/ISerializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/storage/Storage$Editor;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/storage/Storage;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/storage/StorageException;",
+      "superclass": "Ljava/lang/RuntimeException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/storage/TicketStorage;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/storage/TypedStorage;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sts/TicketManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/transport/HttpsURLConnectionWrapper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/transport/Transport;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/transport/TransportFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/AccountHeaderView$CustomTypefaceSpan;",
+      "superclass": "Landroid/text/style/MetricAffectingSpan;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/AccountHeaderView;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/AccountPickerActivity$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/AccountPickerActivity$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/AccountPickerActivity$Extras;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/AccountPickerActivity;",
+      "superclass": "Landroid/app/Activity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/BaseScreenFragment$ArgumentsKey;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/BaseScreenFragment;",
+      "superclass": "Landroid/app/Fragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/Dimensions$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/Dimensions;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/Fonts;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/InterruptResolutionActivity$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/InterruptResolutionActivity;",
+      "superclass": "Landroid/app/Activity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/JavaScriptBridge$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/JavaScriptBridge;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/ProgressView$ProgressAnimation;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/ProgressView;",
+      "superclass": "Landroid/widget/RelativeLayout;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/PropertyBag$Key;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/PropertyBag;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/WebFlowActivity$HostedWebChromeClient;",
+      "superclass": "Landroid/webkit/WebChromeClient;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/WebFlowActivity$HostedWebViewClient;",
+      "superclass": "Landroid/webkit/WebViewClient;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/WebFlowActivity;",
+      "superclass": "Landroid/app/Activity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$AuthFlowScreenStatus;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$Callback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$ErrorStatus;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$ErrorType;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$MSAError;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$MSAPurpose;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$XBLoginCallback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$XBLogoutCallback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$attr;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$color;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$dimen;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$drawable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$id;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$layout;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$menu;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$string;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$style;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R$styleable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/R;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseActivity;",
+      "superclass": "Landroid/app/Activity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;",
+      "superclass": "Landroid/app/Fragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob$Callbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob$Type;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/Settings;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Const;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/GamerTag$Request;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/GamerTag$ReservationRequest;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/GamerTag$Response;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/GamerTag;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Privacy$Key;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Privacy$Setting;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Privacy$Settings;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Privacy$Value;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Privacy;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Profile$Response;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Profile$Setting;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Profile$SettingId;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Profile$User;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Profile;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Suggestions$Request;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Suggestions$Response$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Suggestions$Response;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Suggestions;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/UserAccount$Address;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/UserAccount;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/serialization/UTCDateConverter;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/services/Config;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/services/Endpoints$Type;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/services/Endpoints;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/services/EndpointsFactory$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/services/EndpointsFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/BitmapLoader$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/BitmapLoader$Cache;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/BitmapLoader$MyWorker$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/CircleImageView;",
+      "superclass": "Landroid/widget/ImageView;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/HttpError;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/LoaderResult;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/ObjectLoader$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/ObjectLoader$Cache;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader$ResultListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader$ResultListenerImpl$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader$Worker;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader;",
+      "superclass": "Landroid/content/Loader;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLoginLoader$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLoginLoader$Cache;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLoginLoader$Data;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLogoutLoader$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XTokenLoader$Cache;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XTokenLoader$Data;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity$4;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity$5;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity$6;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity$State$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity$State;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity$Task;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/CatchAllErrorFragment$1;",
+      "superclass": "Landroid/text/style/ClickableSpan;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/CreationErrorFragment$1;",
+      "superclass": "Landroid/text/style/ClickableSpan;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/ErrorActivity$ErrorScreen;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/ErrorButtonsFragment$Callbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/HeaderFragment$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/HeaderFragment$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/HeaderFragment$Callbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/IntroducingFragment$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/IntroducingFragment$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/IntroducingFragment$Callbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/IntroducingFragment$State$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/IntroducingFragment$State;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/IntroducingFragment$Status;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/MSAFragment$Callbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/MSAFragment$Status;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$10;",
+      "superclass": "Landroid/text/style/ClickableSpan;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$4;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$5;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$6;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$7;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$8;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$9;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$AgeGroup;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$Callbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$GamerTagState;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$State$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$State;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$Status;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/UiUtil;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/WelcomeFragment$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/WelcomeFragment$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/WelcomeFragment$Callbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/WelcomeFragment$State$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/WelcomeFragment$State;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/WelcomeFragment$Status;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLoginFragment$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLoginFragment$Callbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLoginFragment$State$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLoginFragment$State;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLoginFragment$Status;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLogoutFragment$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLogoutFragment$Callbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLogoutFragment$Status;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/AuthFlowResult$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/AuthFlowResult;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/CacheUtil;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/ErrorHelper$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/ErrorHelper$ActivityContext;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/ErrorHelper$ActivityResult;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/ErrorHelper$LoaderInfo;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/ErrorHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/FragmentLoaderKey$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/FragmentLoaderKey;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/HttpCall$Callback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/HttpCall;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/HttpUtil$ImageSize;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/HttpUtil;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$attr;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$color;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$dimen;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$drawable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$id;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$layout;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$menu;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$string;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$style;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R$styleable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sdk/R;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sms/SmsReceiver;",
+      "superclass": "Landroid/content/BroadcastReceiver;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/AuthenticatorAccountManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/AuthenticatorUserAccount;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/ClockSkewManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/ConfigManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/Cryptography;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/DAToken;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/DeviceCredentialGenerator;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/DeviceCredentials;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/DeviceIdentity;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/DeviceIdentityManager$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/DeviceIdentityManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/FlightManager$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/FlightManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/IntegerCodeServerError;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/OneTimeCredentialSigner;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/ServerConfig$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/ServerConfig$KnownEnvironment;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/SharedKeyGenerator$KeyPurpose;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/SharedKeyGenerator;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/StringCodeServerError;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/StsError$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/StsError;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/StsErrorCode;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/UserProperties$UserProperty;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/UserProperties;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/XmlSigner;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/exception/CorruptedUserDATokenException;",
+      "superclass": "Ljava/lang/RuntimeException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/request/AbstractStsRequest;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/request/ISignableRequest;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/request/Requests;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/request/StsRequestFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/AbstractStsResponse;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/DateParser$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/DateParser$DateType;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/NodeScope;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/SignatureValidator;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/TextParsers;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/TokenParser$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/TokenParser$SecurityTokenMode;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/AbstractListAdapter;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/AddAccountActivity;",
+      "superclass": "Landroid/app/Activity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/MsaSdkActivity;",
+      "superclass": "Landroid/app/Activity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/SignOutActivity$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/SignOutActivity$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/SignOutActivity$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/SignOutActivity;",
+      "superclass": "Landroid/app/Activity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/StyledButton;",
+      "superclass": "Landroid/widget/Button;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/StyledTextView;",
+      "superclass": "Landroid/widget/TextView;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/userdata/AccountManagerReader;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/userdata/AccountManagerWrapper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/userdata/IPhoneNumberReader;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/userdata/MeContactReader$FullName;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/userdata/SignUpData;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/IChannel;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/IJsonSerializable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/JsonHelper;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/android/StringValue;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/android/net/HTTPClientManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/android/net/HTTPRequest;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/android/net/HTTPResponse;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/android/net/NoCertSSLSocketFactory$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/android/net/NoCertSSLSocketFactory;",
+      "superclass": "Lorg/apache/http/conn/ssl/SSLSocketFactory;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/ActivityListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/BuildConfig;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/HardwareInformation$CPUInfo;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/HardwareInformation;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$10;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$11;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$12;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$13;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$3$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$3$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$4;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$5;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$6;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$7;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$8;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$9;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$HeadsetConnectionReceiver;",
+      "superclass": "Landroid/content/BroadcastReceiver;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity;",
+      "superclass": "Landroid/app/NativeActivity;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$attr;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$color;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$dimen;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$drawable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$id;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$layout;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$menu;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$string;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$style;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R$styleable;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/R;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/TextInputProxyEditTextbox$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/TextInputProxyEditTextbox$MCPEInputConnection;",
+      "superclass": "Landroid/view/inputmethod/InputConnectionWrapper;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/TextInputProxyEditTextbox$MCPEKeyWatcher;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/TextInputProxyEditTextbox;",
+      "superclass": "Landroid/widget/EditText;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/input/InputCharacteristics;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/input/InputDeviceManager$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/input/InputDeviceManager;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/platforms/Platform19$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/platforms/Platform19$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/platforms/Platform;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/Product;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/Purchase;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/Store;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/StoreFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/StoreListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/googleplay/GooglePlayStore$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/googleplay/GooglePlayStore$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/googleplay/GooglePlayStore$4;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lorg/fmod/AudioDevice;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lorg/fmod/FMOD;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lorg/fmod/MediaCodec;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Base;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Domain;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Envelope;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extension;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/a/a;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/a/c;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/a/d;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/a/c;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/i;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/a/d;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/e;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/b/a;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/i;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/b/d;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/e;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/c/c;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/i;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/c/d;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/e;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/c;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/d/a;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/e;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/d/b;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/i;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/e/a;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/e;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/e/b;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/i;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/f/a;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/i;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/f;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/g/a;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/i;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/g/b;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/e;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/g;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/h/a;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/i;"
+    },
+    {
+      "descriptor": "Lcom/android/vending/billing/IInAppBillingService$Stub$Proxy;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/android/vending/billing/IInAppBillingService$Stub;",
+      "superclass": "Landroid/os/Binder;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/DefaultDateTypeAdapter;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/FieldNamingPolicy;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/Gson$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/Gson$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/Gson$3;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/Gson$4;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/Gson$5;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/Gson$6;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/Gson$7;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/Gson$FutureTypeAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonArray;",
+      "superclass": "Lcom/google/gson/JsonElement;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonIOException;",
+      "superclass": "Lcom/google/gson/JsonParseException;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonNull;",
+      "superclass": "Lcom/google/gson/JsonElement;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonObject;",
+      "superclass": "Lcom/google/gson/JsonElement;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonPrimitive;",
+      "superclass": "Lcom/google/gson/JsonElement;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/JsonSyntaxException;",
+      "superclass": "Lcom/google/gson/JsonParseException;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/LongSerializationPolicy$1;",
+      "superclass": "Lcom/google/gson/LongSerializationPolicy;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/LongSerializationPolicy$2;",
+      "superclass": "Lcom/google/gson/LongSerializationPolicy;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/TreeTypeAdapter$SingleTypeFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/TreeTypeAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/TypeAdapter$1;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$10;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$11;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$12;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$13;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$14;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$4;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$5;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$6;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$7;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$8;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/ConstructorConstructor$9;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/Excluder$1;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/Excluder;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap$EntrySet$1;",
+      "superclass": "Lcom/google/gson/internal/LinkedHashTreeMap$LinkedTreeMapIterator;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedHashTreeMap$KeySet$1;",
+      "superclass": "Lcom/google/gson/internal/LinkedHashTreeMap$LinkedTreeMapIterator;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedTreeMap$EntrySet$1;",
+      "superclass": "Lcom/google/gson/internal/LinkedTreeMap$LinkedTreeMapIterator;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/LinkedTreeMap$KeySet$1;",
+      "superclass": "Lcom/google/gson/internal/LinkedTreeMap$LinkedTreeMapIterator;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/UnsafeAllocator$1;",
+      "superclass": "Lcom/google/gson/internal/UnsafeAllocator;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/UnsafeAllocator$2;",
+      "superclass": "Lcom/google/gson/internal/UnsafeAllocator;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/UnsafeAllocator$3;",
+      "superclass": "Lcom/google/gson/internal/UnsafeAllocator;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/UnsafeAllocator$4;",
+      "superclass": "Lcom/google/gson/internal/UnsafeAllocator;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/ArrayTypeAdapter$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/ArrayTypeAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/CollectionTypeAdapterFactory$Adapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/CollectionTypeAdapterFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/DateTypeAdapter$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/DateTypeAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/JsonTreeReader;",
+      "superclass": "Lcom/google/gson/stream/JsonReader;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/JsonTreeWriter;",
+      "superclass": "Lcom/google/gson/stream/JsonWriter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/MapTypeAdapterFactory$Adapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/MapTypeAdapterFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/ObjectTypeAdapter$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/ObjectTypeAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/ReflectiveTypeAdapterFactory$1;",
+      "superclass": "Lcom/google/gson/internal/bind/ReflectiveTypeAdapterFactory$BoundField;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/ReflectiveTypeAdapterFactory$Adapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/ReflectiveTypeAdapterFactory;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/SqlDateTypeAdapter$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/SqlDateTypeAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TimeTypeAdapter$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TimeTypeAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapterRuntimeTypeWrapper;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$10;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$11;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$12;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$13;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$14;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$15;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$16;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$17;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$18;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$19;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$1;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$20;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$21;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$22;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$23;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$24;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$25;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$26$1;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$26;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$27;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$28;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$29;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$2;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$30;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$31;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$32;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$33;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$34;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$35$1;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$35;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$3;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$4;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$5;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$6;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$7;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$8;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$9;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/internal/bind/TypeAdapters$EnumTypeAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/stream/JsonReader$1;",
+      "superclass": "Lcom/google/gson/internal/JsonReaderInternalAccess;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Bonded;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Box;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/CompactBinaryReader;",
+      "superclass": "Lcom/microsoft/bond/ProtocolReader;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/CompactBinaryWriter;",
+      "superclass": "Lcom/microsoft/bond/ProtocolWriter;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/FieldDef;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/GUID;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/List;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Metadata;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Polymorphic;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/RandomProtocolReader;",
+      "superclass": "Lcom/microsoft/bond/ProtocolReader;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/SchemaDef;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/SerializableExceptionBase;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/StructDef;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/TypeDef;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Variant;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Vector;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/Void;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/CompactBinaryByteCounterWriter;",
+      "superclass": "Lcom/microsoft/bond/ProtocolWriter;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/BondInputStream;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/BondOutputStream;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/AndroidLogger;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/AndroidPartA;",
+      "superclass": "Lcom/microsoft/cll/android/PartA;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Cll;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/CllEvents;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/CllSettings;",
+      "superclass": "Lcom/microsoft/cll/android/AbstractSettings;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/CriticalEventHandler;",
+      "superclass": "Lcom/microsoft/cll/android/AbstractHandler;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/EventHandler;",
+      "superclass": "Lcom/microsoft/cll/android/ScheduledWorker;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/FileStorage;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/HostSettings;",
+      "superclass": "Lcom/microsoft/cll/android/AbstractSettings;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Internal/JsonProtocol;",
+      "superclass": "Lcom/microsoft/bond/ProtocolWriter;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/NormalEventHandler;",
+      "superclass": "Lcom/microsoft/cll/android/AbstractHandler;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/SettingsSync;",
+      "superclass": "Lcom/microsoft/cll/android/ScheduledWorker;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/SingletonCll;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/SnapshotScheduler;",
+      "superclass": "Lcom/microsoft/cll/android/ScheduledWorker;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/AccountManager$1;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/SsoRunnable;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/AccountManager$2;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/SsoRunnable;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/AccountManager$3;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/SsoRunnable;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/AccountManager$4;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/SsoRunnable;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/AccountManager$5;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/SsoRunnable;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/AccountManager$6;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/SsoRunnable;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/AccountManager$7;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/SsoRunnable;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/AccountManager$8;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/SsoRunnable;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/IAccountCallback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/IAccountCollectionCallback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ITicketCallback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/SecurityScope;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/analytics/ClientAnalytics;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/analytics/NopClientAnalytics;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/analytics/NopTimedAnalyticsEvent;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/analytics/TimedAnalyticsEvent;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/authenticator/AccountAddPendingActivity;",
+      "superclass": "Lcom/microsoft/onlineid/ui/MsaSdkActivity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/exception/InternalException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/AuthenticationException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/exception/NetworkException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/AuthenticationException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/BlockingApiRequestResultReceiver;",
+      "superclass": "Lcom/microsoft/onlineid/internal/ApiRequestResultReceiver;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/configuration/Setting;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/exception/AccountNotFoundException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/AuthenticationException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/exception/PromptNeededException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/AuthenticationException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/exception/UserOperationException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/AuthenticationException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/RedactableLog;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/RedactableXml;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/GetAccountByIdRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/GetAccountPickerIntentRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/GetAccountRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/GetAllAccountsRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/GetSignInIntentRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/GetSignOutIntentRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/GetSignUpIntentRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/GetTicketRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/RetrieveBackupRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/request/StoreBackupRequest;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/client/request/SingleSsoRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/IMsaSsoService$Stub$Proxy;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/IMsaSsoService$Stub;",
+      "superclass": "Landroid/os/Binder;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/GetAccountByIdOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/GetAccountOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/GetAccountPickerOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/GetAllAccountsOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/GetSignInIntentOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/GetSignOutIntentOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/GetSignUpIntentOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/GetTicketOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/RetrieveBackupOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/StoreBackupOperation;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/operation/ServiceOperation;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/storage/ObjectStreamSerializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/AccountListAdapter;",
+      "superclass": "Lcom/microsoft/onlineid/ui/AbstractListAdapter;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/AccountPickerActivity$AddAccountFlowReceiver;",
+      "superclass": "Lcom/microsoft/onlineid/internal/ApiRequestResultReceiver;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/InterruptResolutionActivity$DelegatedResultReceiver;",
+      "superclass": "Lcom/microsoft/onlineid/internal/ApiRequestResultReceiver;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/WebFlowActivity$1;",
+      "superclass": "Lcom/microsoft/onlineid/internal/ApiRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/CLLCallback;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/Interop$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/MSATicketCallbacks;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/JobSignIn;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/JobSignOut;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/JobSilentSignIn;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob$Type$1;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob$Type;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob$Type$2;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob$Type;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob$Type$3;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/jobs/MSAJob$Type;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Privacy$1;",
+      "superclass": "Lcom/google/gson/reflect/TypeToken;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Privacy$SettingsAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Profile$1;",
+      "superclass": "Lcom/google/gson/reflect/TypeToken;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/Profile$SettingsAdapter;",
+      "superclass": "Lcom/google/gson/TypeAdapter;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/serialization/UTCDateConverter$UTCDateConverterJSONDeserializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/serialization/UTCDateConverter$UTCDateConverterShortDateAlternateFormatJSONDeserializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/serialization/UTCDateConverter$UTCDateConverterShortDateFormatJSONDeserializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/model/serialization/UTCDateConverter$UTCRoundtripDateConverterJSONDeserializer;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/services/EndpointsDnet;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/services/EndpointsProd;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/BitmapLoader$MyWorker$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/BitmapLoader$MyWorker;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/BitmapLoader$Result;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/LoaderResult;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/BitmapLoader;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/ObjectLoader$MyWorker$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/ObjectLoader$MyWorker;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/ObjectLoader$Result;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/LoaderResult;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/ObjectLoader;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader$ResultListenerImpl;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLoginLoader$MyWorker$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLoginLoader$MyWorker;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLoginLoader$Result;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/LoaderResult;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLoginLoader;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLogoutLoader$MyWorker$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLogoutLoader$MyWorker;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLogoutLoader$Result;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/LoaderResult;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XBLogoutLoader;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XTokenLoader$MyWorker$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XTokenLoader$MyWorker;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XTokenLoader$Result;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/LoaderResult;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/toolkit/XTokenLoader;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/toolkit/WorkerLoader;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/AuthFlowActivity;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseActivity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/BanErrorFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/CatchAllErrorFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/CreationErrorFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/ErrorActivity;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseActivity;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/ErrorButtonsFragment$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/ErrorButtonsFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/HeaderFragment$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/HeaderFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/IntroducingFragment$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/IntroducingFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/MSAFragment$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/MSAFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/OfflineErrorFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment$11;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/SignUpFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/WelcomeFragment$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/WelcomeFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLoginFragment$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLoginFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLogoutFragment$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/ui/XBLogoutFragment;",
+      "superclass": "Lcom/microsoft/onlineid/interop/xbox/compat/BaseFragment;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/BitmapLoaderCache;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/BitmapLoaderInfo;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/ObjectLoaderCache;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/ObjectLoaderInfo;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/XBLoginLoaderCache;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/XBLoginLoaderInfo;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/XTokenLoaderCache;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/util/XTokenLoaderInfo;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/ServerConfig$Editor;",
+      "superclass": "Lcom/microsoft/onlineid/internal/configuration/AbstractSettings$Editor;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/ServerConfig$Endpoint;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/ServerConfig$Int;",
+      "superclass": "Ljava/lang/Enum;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/ServerConfig;",
+      "superclass": "Lcom/microsoft/onlineid/internal/configuration/AbstractSettings;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/exception/InlineFlowException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/AuthenticationException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/request/AbstractSoapRequest;",
+      "superclass": "Lcom/microsoft/onlineid/sts/request/AbstractStsRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/request/DeviceProvisionRequest;",
+      "superclass": "Lcom/microsoft/onlineid/sts/request/AbstractStsRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/AbstractSoapResponse;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/AbstractStsResponse;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/DeviceProvisionResponse;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/AbstractStsResponse;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/ConfigParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/DateParser$DateType$1;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/DateParser$DateType;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/DateParser$DateType$2;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/DateParser$DateType;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/DateParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/DerivedKeyTokenParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/DeviceAuthResponseParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/DeviceProvisionResponseParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/EncryptedSoapNodeParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/FaultParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/NgcSecurityTokenParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/PassportParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/ProofTokenParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/SecurityParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/SecurityTokenParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/ServiceBodyParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/ServiceHeaderParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/ServiceResponseParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/SignatureValidator$1;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/SignatureValidator$2;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/StringCodeErrorParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/TimeListParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/TokenCollectionParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/TokenParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/parsers/UserPropertiesParser;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/parsers/BasePullParser;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/ui/SignOutActivity$SignOutResultReceiver;",
+      "superclass": "Lcom/microsoft/onlineid/internal/ApiRequestResultReceiver;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/userdata/MeContactReader;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/userdata/TelephonyManagerReader;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/Base;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/Domain;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/Envelope;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/Extension;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/IContext;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/ITelemetryData;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/cs2/Envelope;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/android/TextViewReader;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/MainActivity$3;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/Minecraft_Market;",
+      "superclass": "Lcom/mojang/minecraftpe/MainActivity;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/Minecraft_Market_Demo;",
+      "superclass": "Lcom/mojang/minecraftpe/MainActivity;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/input/InputDeviceManager$DefaultDeviceManager;",
+      "superclass": "Lcom/mojang/minecraftpe/input/InputDeviceManager;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/input/JellyBeanDeviceManager;",
+      "superclass": "Lcom/mojang/minecraftpe/input/InputDeviceManager;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/platforms/Platform9;",
+      "superclass": "Lcom/mojang/minecraftpe/platforms/Platform;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/NativeStoreListener;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/amazonappstore/AmazonAppStore$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/amazonappstore/AmazonAppStore;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/googleplay/GooglePlayStore$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/googleplay/GooglePlayStore$2$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/googleplay/GooglePlayStore$3$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/googleplay/GooglePlayStore$4$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/googleplay/GooglePlayStore;",
+      "superclass": "Landroid/content/BroadcastReceiver;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/store/samsungappstore/SamsungAppStore;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Data;",
+      "superclass": "LMicrosoft/Telemetry/Base;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/android;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/app;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/cloud;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/device;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/ingest;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/ios;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/javascript;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/os;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/sll;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/user;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/utc;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMicrosoft/Telemetry/Extensions/xbox;",
+      "superclass": "LMicrosoft/Telemetry/Extension;"
+    },
+    {
+      "descriptor": "LMs/Telemetry/CllHeartBeat;",
+      "superclass": "Lcom/microsoft/telemetry/Domain;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/a/a;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/a/c;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/a/b;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/a/c;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/b/b;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/b/a;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/b/c;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/b/a;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/c/a;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/c/c;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/c/b;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/c/c;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/d/c;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/d/b;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/d/d;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/d/b;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/e/c;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/e/b;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/e/d;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/e/b;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/f/b;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/f/a;"
+    },
+    {
+      "descriptor": "Lcom/amazon/device/iap/internal/b/f/c;",
+      "superclass": "Lcom/amazon/device/iap/internal/b/f/a;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/FieldNamingPolicy$1;",
+      "superclass": "Lcom/google/gson/FieldNamingPolicy;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/FieldNamingPolicy$2;",
+      "superclass": "Lcom/google/gson/FieldNamingPolicy;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/FieldNamingPolicy$3;",
+      "superclass": "Lcom/google/gson/FieldNamingPolicy;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/FieldNamingPolicy$4;",
+      "superclass": "Lcom/google/gson/FieldNamingPolicy;"
+    },
+    {
+      "descriptor": "Lcom/google/gson/FieldNamingPolicy$5;",
+      "superclass": "Lcom/google/gson/FieldNamingPolicy;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/CompactBinaryV2Reader;",
+      "superclass": "Lcom/microsoft/bond/CompactBinaryReader;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/internal/CompactBinaryV2Writer;",
+      "superclass": "Lcom/microsoft/bond/CompactBinaryWriter;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/FileBondInputStream;",
+      "superclass": "Lcom/microsoft/bond/io/BondInputStream;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/FileBondOutputStream;",
+      "superclass": "Lcom/microsoft/bond/io/BondOutputStream;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/GenericBondInputStream;",
+      "superclass": "Lcom/microsoft/bond/io/BondInputStream;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/GenericBondOutputStream;",
+      "superclass": "Lcom/microsoft/bond/io/BondOutputStream;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/MemoryBondInputStream;",
+      "superclass": "Lcom/microsoft/bond/io/BondInputStream;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/bond/io/MemoryBondOutputStream;",
+      "superclass": "Lcom/microsoft/bond/io/BondOutputStream;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/AndroidCll;",
+      "superclass": "Lcom/microsoft/cll/android/Cll;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/exception/UserCancelledException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/InternalException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/log/RedactableResponse;",
+      "superclass": "Lcom/microsoft/onlineid/internal/log/RedactableXml;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/BundleMarshallerException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/InternalException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/MasterRedirectException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/InternalException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/ClientConfigUpdateNeededException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/InternalException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/client/ServiceBindingException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/InternalException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/exception/ClientNotAuthorizedException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/InternalException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/exception/UnsupportedClientVersionException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/InternalException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/MsaSsoService$1;",
+      "superclass": "Lcom/microsoft/onlineid/internal/sso/service/IMsaSsoService$Stub;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/sso/service/operation/GetTicketOperation$1;",
+      "superclass": "Lcom/microsoft/onlineid/internal/BlockingApiRequestResultReceiver;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/InterruptResolutionActivity$TicketResultReceiver;",
+      "superclass": "Lcom/microsoft/onlineid/internal/ui/InterruptResolutionActivity$DelegatedResultReceiver;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/internal/ui/InterruptResolutionActivity$WebFlowResultReciever;",
+      "superclass": "Lcom/microsoft/onlineid/internal/ui/InterruptResolutionActivity$DelegatedResultReceiver;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/JobSignIn$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/JobSignIn$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/JobSignOut$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/JobSignOut$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/JobSilentSignIn$1;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/interop/xbox/jobs/JobSilentSignIn$2;",
+      "superclass": "Ljava/lang/Object;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/exception/InvalidResponseException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/InternalException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/exception/RequestThrottledException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/NetworkException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/exception/StsException;",
+      "superclass": "Lcom/microsoft/onlineid/exception/InternalException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/request/AbstractTokenRequest;",
+      "superclass": "Lcom/microsoft/onlineid/sts/request/AbstractSoapRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/DeviceAuthResponse;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/AbstractSoapResponse;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/response/ServiceResponse;",
+      "superclass": "Lcom/microsoft/onlineid/sts/response/AbstractSoapResponse;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/Data;",
+      "superclass": "Lcom/microsoft/telemetry/Base;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/ITelemetry;",
+      "superclass": "Lcom/microsoft/telemetry/Domain;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/extensions/android;",
+      "superclass": "Lcom/microsoft/telemetry/Extension;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/extensions/app;",
+      "superclass": "Lcom/microsoft/telemetry/Extension;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/extensions/device;",
+      "superclass": "Lcom/microsoft/telemetry/Extension;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/extensions/os;",
+      "superclass": "Lcom/microsoft/telemetry/Extension;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/telemetry/extensions/user;",
+      "superclass": "Lcom/microsoft/telemetry/Extension;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/platforms/Platform19;",
+      "superclass": "Lcom/mojang/minecraftpe/platforms/Platform9;"
+    },
+    {
+      "descriptor": "LMicrosoft/Android/LoggingLibrary/Snapshot;",
+      "superclass": "Lcom/microsoft/telemetry/Data;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/Internal/AndroidInternalCll;",
+      "superclass": "Lcom/microsoft/cll/android/AndroidCll;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/cll/android/PreSerializedJsonSerializable;",
+      "superclass": "Lcom/microsoft/telemetry/Data;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/exception/StsParseException;",
+      "superclass": "Lcom/microsoft/onlineid/sts/exception/InvalidResponseException;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/request/DeviceAuthRequest;",
+      "superclass": "Lcom/microsoft/onlineid/sts/request/AbstractTokenRequest;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/request/ServiceRequest;",
+      "superclass": "Lcom/microsoft/onlineid/sts/request/AbstractTokenRequest;"
+    },
+    {
+      "descriptor": "Lcom/mojang/minecraftpe/platforms/Platform21;",
+      "superclass": "Lcom/mojang/minecraftpe/platforms/Platform19;"
+    },
+    {
+      "descriptor": "Lcom/microsoft/onlineid/sts/exception/StsSignatureException;",
+      "superclass": "Lcom/microsoft/onlineid/sts/exception/StsParseException;"
+    }
+  ]
+}
