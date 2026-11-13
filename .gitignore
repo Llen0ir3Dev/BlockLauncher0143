@@ -20,4 +20,3 @@ analysis/symbols/
 .idea/
 .vscode/
 *.swp
-/bin/*
