@@ -573,7 +573,10 @@ int main(int argc, char** argv) {
     Options options;
     for (int i = 1; i < argc; ++i) {
         const std::string arg = argv[i];
-        if (arg == "--help" || arg == "-h") {
+        if (arg == "--version" || arg == "-V") {
+            std::cout << "NEXUS-MCPE " << NEXUS_VERSION << "\n";
+            return 0;
+        } else if (arg == "--help" || arg == "-h") {
             options.help = true;
         } else if (arg == "--list") {
             options.list = true;
