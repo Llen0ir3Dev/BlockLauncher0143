@@ -34,6 +34,7 @@
 #include <nexus/mod/mod.hpp>
 #include <nexus/mod/registry.hpp>
 #include <nexus/platform/apk.hpp>
+#include <nexus/platform/game_source.hpp>
 #include <nexus/platform/provisioning.hpp>
 #include <nexus/platform/strategy.hpp>
 #include <nexus/platform/system.hpp>
@@ -64,6 +65,9 @@ Commands:
   install list [--root DIR] [--json]
   install verify ID [--root DIR]
   install remove ID [--root DIR]
+  setup [PATH] [--root DIR] [--game-dir DIR] [--detect|--verify] [--auto]
+        [--extract-assets] [--dry-run] [--json]
+                                       Detect a user-supplied APK, verify it, import it
   strategy APK [--pc-port EXE] [--json]
   launch ID [--execute] [--root DIR] [--socket PATH]
   profile list|show|create|delete|path ... 
@@ -1211,6 +1215,164 @@ int command_bridge(int argc, char** argv) {
     }
 }
 
+int command_setup(int argc, char** argv) {
+    const ParsedArgs args = parse_args(
+        argc, argv, 2,
+        {"--root", "--game-dir"},
+        {"--auto", "--extract-assets", "--dry-run", "--overwrite", "--json", "--detect",
+         "--verify"});
+    std::string explicit_path = args.get("--game-dir");
+    if (!args.positional.empty()) explicit_path = args.positional.front();
+    const std::string root = args.get("--root", nexus::platform::default_installs_root());
+
+    const nexus::platform::GameSourceReport detection =
+        nexus::platform::detect_game_sources(explicit_path);
+
+    json result;
+    result["installsRoot"] = root;
+    result["detection"] = detection.to_json();
+
+    const bool detect_only = args.has("--detect");
+    const bool verify_only = args.has("--verify");
+
+    if (detect_only) {
+        result["status"] = detection.found ? "detected" : "not-found";
+        if (args.has("--json")) {
+            print_json(result);
+        } else {
+            std::cout << detection.to_markdown();
+            if (!detection.found) std::cerr << "nexus: " << detection.error << "\n";
+        }
+        return detection.found ? 0 : 1;
+    }
+
+    if (verify_only) {
+        // Verify both the detected package (when present) and every existing
+        // imported installation.
+        std::vector<nexus::platform::GameInstallation> existing;
+        nexus::platform::discover_installations(root, existing);
+        json checks = json::array();
+        bool all_ok = true;
+        for (const auto& installation : existing) {
+            std::string error;
+            const bool ok = nexus::platform::verify_installation(installation, error);
+            checks.push_back({{"id", installation.id},
+                              {"root", installation.root},
+                              {"ok", ok},
+                              {"error", error}});
+            all_ok = all_ok && ok;
+        }
+        result["installs"] = checks;
+        result["status"] = detection.found ? "verified" : (existing.empty() ? "not-found"
+                                                                           : (all_ok ? "verified"
+                                                                                     : "invalid"));
+        if (args.has("--json")) {
+            print_json(result);
+        } else if (detection.found) {
+            std::cout << detection.to_markdown();
+            for (const auto& check : checks) {
+                std::cout << (check.value("ok", false) ? "OK   " : "FAIL ")
+                          << check.value("id", "") << "\n";
+                if (!check.value("error", "").empty()) {
+                    std::cout << "     " << check.value("error", "") << "\n";
+                }
+            }
+            std::cout << "\nPackage verified. Note: the ARM32 execution layer is not "
+                         "complete yet, so the game cannot be launched from this build.\n";
+        } else if (existing.empty()) {
+            std::cerr << "nexus: " << detection.error << "\n";
+        } else {
+            for (const auto& check : checks) {
+                std::cout << (check.value("ok", false) ? "OK   " : "FAIL ")
+                          << check.value("id", "") << "\n";
+                if (!check.value("error", "").empty()) {
+                    std::cout << "     " << check.value("error", "") << "\n";
+                }
+            }
+        }
+        return all_ok && (detection.found || !existing.empty()) ? 0 : 1;
+    }
+
+    if (!detection.found) {
+        result["imported"] = false;
+        result["status"] = "not-found";
+        if (args.has("--json")) {
+            print_json(result);
+        } else {
+            std::cout << detection.to_markdown();
+            std::cerr << "nexus: " << detection.error << "\n";
+            std::cerr << "nexus: place a Minecraft PE 0.14.3 APK in ./game, "
+                         "$NEXUS_GAME_DIR, or " << nexus::fs::join(root, "..") << "/game "
+                         "and run 'nexus setup' again.\n";
+        }
+        return 1;
+    }
+
+    // Is this exact package already installed?
+    std::vector<nexus::platform::GameInstallation> existing;
+    nexus::platform::discover_installations(root, existing);
+    for (const auto& installation : existing) {
+        if (!installation.sha256.empty() &&
+            installation.sha256 == detection.candidates.front().apk.sha256) {
+            result["imported"] = false;
+            result["status"] = "already-installed";
+            result["installation"] = installation.to_json();
+            if (args.has("--json")) {
+                print_json(result);
+            } else {
+                std::cout << "Already installed as " << installation.id << "\n";
+                std::cout << "  root: " << installation.root << "\n";
+            }
+            return 0;
+        }
+    }
+
+    if (args.has("--dry-run")) {
+        result["imported"] = false;
+        result["status"] = "dry-run";
+        if (args.has("--json")) {
+            print_json(result);
+        } else {
+            std::cout << "Would import: " << detection.chosen << "\n";
+            std::cout << "  into: " << root << "\n";
+        }
+        return 0;
+    }
+
+    nexus::platform::InstallationOptions options;
+    options.extract_assets = args.has("--extract-assets");
+    options.overwrite = args.has("--overwrite");
+    nexus::platform::GameInstallation installation;
+    std::string error;
+    if (!nexus::platform::create_installation(detection.chosen, root, options, installation,
+                                              error)) {
+        result["status"] = "import-failed";
+        result["error"] = error;
+        if (args.has("--json")) print_json(result);
+        return fail(error);
+    }
+
+    result["imported"] = true;
+    result["status"] = "imported";
+    result["installation"] = installation.to_json();
+    if (args.has("--json")) {
+        print_json(result);
+    } else {
+        std::cout << "Imported " << installation.name << "\n";
+        std::cout << "  id:   " << installation.id << "\n";
+        std::cout << "  root: " << installation.root << "\n";
+        std::cout << "  abis: ";
+        for (size_t i = 0; i < installation.abis.size(); ++i) {
+            if (i) std::cout << ", ";
+            std::cout << installation.abis[i];
+        }
+        std::cout << "\n";
+        std::cout << "  assets: " << (installation.assets_extracted ? "extracted" : "not extracted")
+                  << "\n";
+    }
+    return 0;
+}
+
 } // namespace
 
 int main(int argc, char** argv) {
@@ -1237,6 +1399,7 @@ int main(int argc, char** argv) {
         if (command == "doctor") return command_doctor(parse_args(argc, argv, 2, {"--apk"}, {"--json"}));
         if (command == "apk") return command_apk(argc, argv);
         if (command == "install") return command_install(argc, argv);
+        if (command == "setup") return command_setup(argc, argv);
         if (command == "strategy") return command_strategy(argc, argv);
         if (command == "launch") return command_launch(argc, argv);
         if (command == "profile") return command_profile(argc, argv);

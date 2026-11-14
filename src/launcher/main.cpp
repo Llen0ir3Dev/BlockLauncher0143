@@ -37,6 +37,7 @@
 #include <nexus/core/time.hpp>
 #include <nexus/core/version.hpp>
 #include <nexus/platform/apk.hpp>
+#include <nexus/platform/game_source.hpp>
 #include <nexus/platform/provisioning.hpp>
 #include <nexus/platform/strategy.hpp>
 #include <nexus/platform/system.hpp>
@@ -57,6 +58,9 @@ Usage:
   nexus-launcher --strategy [--install ID] Show the execution strategy
   nexus-launcher --launch [--install ID] [--execute] [--yes]
   nexus-launcher --profiles [--json]       List profiles
+  nexus-launcher --detect [--json]         Detect a game APK in known locations
+  nexus-launcher --setup [--extract-assets] [--json]
+                                           Detect, verify and import a game APK
 
 Options:
   --root DIR        Installs directory (default: $NEXUS_HOME/installs)
@@ -75,6 +79,9 @@ struct Options {
     bool strategy = false;
     bool launch = false;
     bool profiles = false;
+    bool detect = false;
+    bool setup = false;
+    bool extract_assets = false;
     bool json = false;
     bool execute = false;
     bool yes = false;
@@ -357,6 +364,51 @@ int execute_plan(const LaunchPlan& plan, bool verbose) {
     return 0;
 }
 
+int run_guided_setup(const Options& options, bool extract_assets, std::string& message) {
+    const auto detection = nexus::platform::detect_game_sources("");
+    if (!detection.found) {
+        message = detection.to_markdown();
+        message += "\nNo game package was found. Place your Minecraft PE 0.14.3 APK in "
+                   "one of: ./game, $NEXUS_GAME_DIR, " +
+                   nexus::fs::join(nexus::fs::nexus_home(), "game") + ", or alongside the AppImage.\n";
+        return 1;
+    }
+
+    const auto candidate = nexus::platform::probe_apk(detection.chosen);
+    for (const auto& existing : discovered_installations(options.root)) {
+        if (!existing.sha256.empty() && existing.sha256 == candidate.sha256) {
+            message = "Already installed as " + existing.id + "\n  root: " + existing.root;
+            return 0;
+        }
+    }
+
+    nexus::platform::InstallationOptions install_options;
+    install_options.extract_assets = extract_assets;
+    nexus::platform::GameInstallation installation;
+    std::string error;
+    if (!nexus::platform::create_installation(detection.chosen, options.root, install_options,
+                                              installation, error)) {
+        message = "Import failed: " + error;
+        return 1;
+    }
+    message = "Imported " + installation.name + "\n";
+    message += "  id:   " + installation.id + "\n";
+    message += "  root: " + installation.root + "\n";
+    message += "  note: the package is verified, but the ARM32 execution layer is not "
+               "complete yet; the game cannot be started from this build.\n";
+    return 0;
+}
+
+int print_detect(const Options& options) {
+    const auto detection = nexus::platform::detect_game_sources("");
+    if (options.json) {
+        std::cout << detection.to_json().dump(2) << "\n";
+    } else {
+        std::cout << detection.to_markdown();
+    }
+    return detection.found ? 0 : 1;
+}
+
 json host_report(const Options& options) {
     const auto system = nexus::platform::system_info();
     const auto capabilities = nexus::platform::detect_runtime_capabilities();
@@ -475,7 +527,11 @@ void interactive(const Options& options) {
         std::cout << "The original Minecraft PE client is never modified.\n\n";
         std::cout << "Installs (" << options.root << ")\n";
         if (installations.empty()) {
-            std::cout << "  (none) - use 'nexus install import PATH' first\n";
+            std::cout << "  (none)\n"
+                      << "\n  No game is installed yet. Place your Minecraft PE 0.14.3\n"
+                      << "  APK in ./game, $NEXUS_GAME_DIR, "
+                      << nexus::fs::join(nexus::fs::nexus_home(), "game") << ",\n"
+                      << "  or next to the AppImage, then press 'i' to import it.\n";
         } else {
             for (size_t i = 0; i < installations.size(); ++i) {
                 const auto& installation = installations[i];
@@ -490,6 +546,7 @@ void interactive(const Options& options) {
         std::cout << "Bridge:   " << bridge_status_line(options.socket) << " @ "
                   << options.socket << "\n\n";
         std::cout << "  [1-" << installations.size() << "] select install\n"
+                  << "  i  import / detect a game APK (guided)\n"
                   << "  s  show execution strategy\n"
                   << "  p  profiles\n"
                   << "  l  launch (asks before spawning anything)\n"
@@ -502,6 +559,16 @@ void interactive(const Options& options) {
         const std::string command = nexus::to_lower(nexus::trim(line));
         if (command == "q" || command == "quit" || command == "exit") break;
         if (command == "r" || command.empty()) continue;
+        if (command == "i" || command == "import" || command == "setup") {
+            std::string message;
+            const int status = run_guided_setup(options, true, message);
+            std::cout << "\n" << message << "\n";
+            if (status == 0) selected.clear();
+            std::cout << "Press Enter to continue...";
+            std::cout.flush();
+            std::getline(std::cin, line);
+            continue;
+        }
         if (command == "p" || command == "profiles") {
             Options list_options = options;
             list_options.json = false;
@@ -588,6 +655,12 @@ int main(int argc, char** argv) {
             options.launch = true;
         } else if (arg == "--profiles") {
             options.profiles = true;
+        } else if (arg == "--detect") {
+            options.detect = true;
+        } else if (arg == "--setup") {
+            options.setup = true;
+        } else if (arg == "--extract-assets") {
+            options.extract_assets = true;
         } else if (arg == "--json") {
             options.json = true;
         } else if (arg == "--execute") {
@@ -648,6 +721,17 @@ int main(int argc, char** argv) {
     }
     if (options.strategy) return print_strategy(options);
     if (options.profiles) return print_profiles(options);
+    if (options.detect) return print_detect(options);
+    if (options.setup) {
+        std::string message;
+        const int status = run_guided_setup(options, options.extract_assets, message);
+        if (options.json) {
+            std::cout << json({{"ok", status == 0}, {"message", message}}).dump(2) << "\n";
+        } else {
+            std::cout << message << "\n";
+        }
+        return status;
+    }
     if (options.launch) {
         LaunchPlan plan;
         std::string error;
@@ -694,7 +778,7 @@ int main(int argc, char** argv) {
 
     if (!host_has_tty()) {
         std::cerr << "nexus-launcher: interactive mode needs a TTY. Use --list, --report, "
-                     "--strategy or --launch.\n";
+                     "--strategy, --detect, --setup or --launch.\n";
         return 2;
     }
     interactive(options);
