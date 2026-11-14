@@ -21,6 +21,30 @@ option(NEXUS_BUILD_RUNTIME "Build the runtime and shader demo" ON)
 option(NEXUS_ENABLE_SCRIPTING "Embed the Duktape JavaScript engine" ON)
 option(NEXUS_ENABLE_OPENGL "Build OpenGL shader compilation/integration support" ON)
 option(NEXUS_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
+option(NEXUS_BUILD_GUEST_ARM32 "Cross-compile the ARM32 guest runtime with the Android NDK" OFF)
+
+# ---------------------------------------------------------------------------
+# Architecture contract
+#
+# Three architectures are involved and must never be confused:
+#   * dev build host : whatever this machine is (e.g. aarch64 Termux/PRoot)
+#   * target host    : Ubuntu 22.04 x86_64 (the released AppImage)
+#   * guest          : Android ARM32 (armeabi-v7a) game code run via QEMU
+#
+# A successful build on the dev host is NOT an x86_64 build.  The release
+# AppImage is produced on an x86_64 CI runner.
+# ---------------------------------------------------------------------------
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86_64|AMD64|amd64)$")
+  set(NEXUS_HOST_ARCH "x86_64")
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64|arm64|ARM64)$")
+  set(NEXUS_HOST_ARCH "aarch64")
+else()
+  set(NEXUS_HOST_ARCH "${CMAKE_SYSTEM_PROCESSOR}")
+endif()
+message(STATUS "NEXUS host architecture: ${NEXUS_HOST_ARCH} (release artifact targets x86_64)")
+
+set(NEXUS_ANDROID_NDK "${ANDROID_NDK_PATH}" CACHE PATH
+    "Android NDK root used to cross-compile the ARM32 guest runtime")
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Build type" FORCE)
@@ -51,6 +75,7 @@ function(nexus_target_defaults target)
   target_include_directories(${target} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/third_party
+    ${CMAKE_SOURCE_DIR}/compat/arm32/include
   )
   target_compile_options(${target} PRIVATE ${NEXUS_WARNING_FLAGS})
   target_compile_definitions(${target} PRIVATE
@@ -157,6 +182,11 @@ nexus_target_defaults(nexus_bridge)
 target_link_libraries(nexus_bridge PUBLIC nexus_core Threads::Threads)
 
 # ---------------------------------------------------------------------------
+# ARM32 Compatibility Layer (NEXUS-ARM-COMPAT)
+# ---------------------------------------------------------------------------
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/compat/arm32)
+
+# ---------------------------------------------------------------------------
 # Minecraft PE asset integration (uniforms, materials, multiversion shaders)
 # ---------------------------------------------------------------------------
 file(GLOB_RECURSE NEXUS_MCPE_SOURCES CONFIGURE_DEPENDS
@@ -164,7 +194,7 @@ file(GLOB_RECURSE NEXUS_MCPE_SOURCES CONFIGURE_DEPENDS
 )
 add_library(nexus_mcpe STATIC ${NEXUS_MCPE_SOURCES})
 nexus_target_defaults(nexus_mcpe)
-target_link_libraries(nexus_mcpe PUBLIC nexus_core nexus_shader)
+target_link_libraries(nexus_mcpe PUBLIC nexus_core nexus_shader nexus_arm_compat)
 
 # ---------------------------------------------------------------------------
 # Command line tool
@@ -220,22 +250,46 @@ install(FILES README.md LICENSE THIRD_PARTY_NOTICES.md
 option(NEXUS_BUILD_APPIMAGE "Build AppImage package" OFF)
 
 if(NEXUS_BUILD_APPIMAGE)
+  if(NOT NEXUS_HOST_ARCH STREQUAL "x86_64")
+    message(FATAL_ERROR
+      "The release AppImage must be built on an x86_64 host, but this host is "
+      "${NEXUS_HOST_ARCH}. Use the GitHub Actions ubuntu-22.04 runner (or an "
+      "x86_64 machine); a local aarch64 build only validates logic.")
+  endif()
+
   list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
   find_package(AppImage QUIET)
+  find_program(NEXUS_QEMU_ARM qemu-arm-static
+    HINTS /usr/bin /usr/local/bin
+    DOC "Static QEMU ARM user-mode emulator to bundle in the AppImage")
 
   if(AppImage_FOUND AND NEXUS_BUILD_LAUNCHER)
+    set(NEXUS_APPIMAGE_EXTRA_FILES
+      "${CMAKE_SOURCE_DIR}/examples/mods -> usr/share/nexus-mcpe/mods"
+      "${CMAKE_SOURCE_DIR}/examples/shader-packs -> usr/share/nexus-mcpe/shader-packs"
+      "${CMAKE_SOURCE_DIR}/examples/profiles -> usr/share/nexus-mcpe/profiles"
+      "${CMAKE_SOURCE_DIR}/documentation -> usr/share/doc/nexus-mcpe"
+    )
+    if(NEXUS_BUILD_GUEST_ARM32)
+      # Always include the guest runtime directory; the custom target below
+      # both builds it and makes it exist before the AppImage is assembled.
+      list(APPEND NEXUS_APPIMAGE_EXTRA_FILES
+        "${CMAKE_BINARY_DIR}/guest-arm32 -> usr/share/nexus-mcpe/compat/arm32")
+    endif()
+
     nexus_create_appimage(
       TARGET nexus-launcher
       APPIMAGE_NAME "NEXUS-MCPE-x86_64"
       DESKTOP_FILE "${CMAKE_SOURCE_DIR}/resources/nexus-mcpe.desktop"
       ICON_FILE "${CMAKE_SOURCE_DIR}/resources/nexus-mcpe.png"
       OUTPUT_DIR "${CMAKE_BINARY_DIR}/appimage"
+      QEMU_BINARY "${NEXUS_QEMU_ARM}"
       EXTRA_FILES
-        "${CMAKE_SOURCE_DIR}/examples/mods -> usr/share/nexus-mcpe/mods"
-        "${CMAKE_SOURCE_DIR}/examples/shader-packs -> usr/share/nexus-mcpe/shader-packs"
-        "${CMAKE_SOURCE_DIR}/examples/profiles -> usr/share/nexus-mcpe/profiles"
-        "${CMAKE_SOURCE_DIR}/documentation -> usr/share/doc/nexus-mcpe"
+        ${NEXUS_APPIMAGE_EXTRA_FILES}
     )
+    if(TARGET nexus_guest_arm32)
+      add_dependencies(NEXUS-MCPE-x86_64-appimage nexus_guest_arm32)
+    endif()
   elseif(NEXUS_BUILD_LAUNCHER)
     message(WARNING "AppImage tools (linuxdeploy, appimagetool) not found. Skipping AppImage creation.")
   endif()

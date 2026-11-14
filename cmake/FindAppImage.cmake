@@ -40,7 +40,7 @@ find_package_handle_standard_args(AppImage
 # Function to create an AppImage
 function(nexus_create_appimage)
   set(options)
-  set(oneValueArgs TARGET APPIMAGE_NAME DESKTOP_FILE ICON_FILE OUTPUT_DIR)
+  set(oneValueArgs TARGET APPIMAGE_NAME DESKTOP_FILE ICON_FILE OUTPUT_DIR QEMU_BINARY)
   set(multiValueArgs EXTRA_FILES LIBS_PLUGINS)
   cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -67,6 +67,10 @@ function(nexus_create_appimage)
   if(NOT OUTPUT_DIR)
     set(OUTPUT_DIR ${CMAKE_BINARY_DIR}/appimage)
   endif()
+  # The packaging target runs with this directory as its working directory and
+  # linuxdeploy writes the resulting AppImage there, so it must exist before
+  # the first build command executes.
+  file(MAKE_DIRECTORY ${OUTPUT_DIR})
 
   # AppDir structure
   set(APPDIR ${OUTPUT_DIR}/AppDir)
@@ -81,53 +85,60 @@ function(nexus_create_appimage)
   get_filename_component(DESKTOP_BASENAME ${ARG_DESKTOP_FILE} NAME)
   get_filename_component(ICON_BASENAME ${ARG_ICON_FILE} NAME)
 
-  # Custom command to create AppImage
-  add_custom_target(${ARG_APPIMAGE_NAME}-appimage
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${BIN_DIR} ${LIB_DIR} ${APPLICATIONS_DIR} ${ICONS_DIR} ${METADIR}
+  # Assemble the AppDir and package it with a single ordered custom target.
+  # (add_custom_command(TARGET ... POST_BUILD) only works for real executables
+  # and libraries, not for custom targets, so every step is a COMMAND here.)
+  set(_cmds
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${OUTPUT_DIR}
+    COMMAND ${CMAKE_COMMAND} -E make_directory
+            ${BIN_DIR} ${LIB_DIR} ${APPLICATIONS_DIR} ${ICONS_DIR} ${METADIR}
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${ARG_TARGET}> ${BIN_DIR}/
     COMMAND ${CMAKE_COMMAND} -E copy ${ARG_DESKTOP_FILE} ${APPLICATIONS_DIR}/
     COMMAND ${CMAKE_COMMAND} -E copy ${ARG_ICON_FILE} ${ICONS_DIR}/${ICON_BASENAME}
     COMMAND ${CMAKE_COMMAND} -E copy ${ARG_DESKTOP_FILE} ${METADIR}/${DESKTOP_BASENAME}
-    COMMAND ${CMAKE_COMMAND} -E rename ${METADIR}/${DESKTOP_BASENAME} ${METADIR}/${ARG_APPIMAGE_NAME}.metainfo.xml
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Preparing AppDir for ${ARG_APPIMAGE_NAME}"
+    COMMAND ${CMAKE_COMMAND} -E rename
+            ${METADIR}/${DESKTOP_BASENAME} ${METADIR}/${ARG_APPIMAGE_NAME}.metainfo.xml
   )
 
-  # Copy extra files
-  if(ARG_EXTRA_FILES)
-    foreach(pair ${ARG_EXTRA_FILES})
-      # Expected format: "source -> destination"
-      string(REGEX MATCH "^([^>]+)->(.+)$" _ ${pair})
-      if(CMAKE_MATCH_COUNT EQUAL 2)
-        set(src ${CMAKE_MATCH_1})
-        set(dst ${CMAKE_MATCH_2})
-        string(STRIP ${src} src)
-        string(STRIP ${dst} dst)
-        add_custom_command(TARGET ${ARG_APPIMAGE_NAME}-appimage POST_BUILD
-          COMMAND ${CMAKE_COMMAND} -E make_directory ${APPDIR}/${dst}
-          COMMAND ${CMAKE_COMMAND} -E copy_directory ${src} ${APPDIR}/${dst}
-          COMMENT "Copying extra files ${src} -> ${dst}"
-        )
-      else()
-        message(WARNING "Invalid EXTRA_FILES format: ${pair}. Expected 'source -> destination'")
-      endif()
-    endforeach()
+  # Copy the bundled ARM32 instruction translator (QEMU user-mode) if present.
+  # It is shipped as a separate executable; NEXUS does not depend on an
+  # external Android emulator.
+  if(ARG_QEMU_BINARY AND EXISTS "${ARG_QEMU_BINARY}")
+    list(APPEND _cmds
+      COMMAND ${CMAKE_COMMAND} -E copy ${ARG_QEMU_BINARY} ${BIN_DIR}/)
   endif()
 
-  # Run linuxdeploy to bundle dependencies
-  add_custom_command(TARGET ${ARG_APPIMAGE_NAME}-appimage POST_BUILD
+  # Copy extra files.  Expected format: "source -> destination".
+  foreach(pair IN LISTS ARG_EXTRA_FILES)
+    string(REGEX MATCH "^([^>]+)->(.+)$" _match "${pair}")
+    if(CMAKE_MATCH_COUNT EQUAL 2)
+      string(STRIP "${CMAKE_MATCH_1}" _src)
+      string(STRIP "${CMAKE_MATCH_2}" _dst)
+      list(APPEND _cmds
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${APPDIR}/${_dst}
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${_src} ${APPDIR}/${_dst})
+    else()
+      message(WARNING "Invalid EXTRA_FILES format: ${pair}. Expected 'source -> destination'")
+    endif()
+  endforeach()
+
+  # Run linuxdeploy last; --output appimage also invokes appimagetool.
+  list(APPEND _cmds
     COMMAND ${LINUXDEPLOY_EXECUTABLE}
       --appdir ${APPDIR}
       --executable ${BIN_DIR}/$<TARGET_FILE_NAME:${ARG_TARGET}>
       --desktop-file ${APPLICATIONS_DIR}/${DESKTOP_BASENAME}
       --icon-file ${ICONS_DIR}/${ICON_BASENAME}
       --output appimage
-    WORKING_DIRECTORY ${OUTPUT_DIR}
-    COMMENT "Running linuxdeploy to bundle ${ARG_APPIMAGE_NAME}"
   )
 
-  # Final appimagetool packaging (linuxdeploy --output appimage does this)
-  # The resulting AppImage will be in ${OUTPUT_DIR}/${ARG_APPIMAGE_NAME}-x86_64.AppImage
+  add_custom_target(${ARG_APPIMAGE_NAME}-appimage
+    ${_cmds}
+    WORKING_DIRECTORY ${OUTPUT_DIR}
+    COMMENT "Assembling and packaging ${ARG_APPIMAGE_NAME}"
+    VERBATIM
+  )
+  add_dependencies(${ARG_APPIMAGE_NAME}-appimage ${ARG_TARGET})
 
   # Add test target
   add_custom_target(test-${ARG_APPIMAGE_NAME}-appimage
@@ -137,8 +148,12 @@ function(nexus_create_appimage)
   )
 
   # Install the AppImage
+  set(_install_bindir "${CMAKE_INSTALL_BINDIR}")
+  if(NOT _install_bindir)
+    set(_install_bindir bin)
+  endif()
   install(FILES ${OUTPUT_DIR}/${ARG_APPIMAGE_NAME}-x86_64.AppImage
-    DESTINATION ${CMAKE_INSTALL_BINDIR}
+    DESTINATION ${_install_bindir}
     RENAME ${ARG_APPIMAGE_NAME}.AppImage
   )
 endfunction()
