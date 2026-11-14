@@ -96,15 +96,14 @@ if(ARM_COMPAT_SOURCES)
         ${CMAKE_CURRENT_SOURCE_DIR}/loader
         ${CMAKE_SOURCE_DIR}/include
     )
-    # JNI headers - use a real JDK/NDK header when present, otherwise fall back
-    # to the bundled minimal declaration header (jni_min.h).  The compatibility
-    # library only touches opaque JNI pointers on the host, so either works and
-    # the host build never requires a JDK to be installed.
+    # JNI headers.  The host-side compatibility library may only use a real
+    # JDK header (which is glibc-compatible) or the bundled minimal declaration
+    # header.  The Android NDK sysroot must NOT be added here: its jni.h pulls
+    # in Android's inttypes.h/dlfcn.h, which conflict with glibc in a host
+    # build.  The ARM32 guest is compiled separately with the NDK toolchain and
+    # gets the real <jni.h> through the NDK compiler driver.
     find_path(JNI_H jni.h
-        HINTS ${ANDROID_NDK_PATH}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
-              ${ANDROID_NDK_PATH}/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include
-              ${ANDROID_NDK_PATH}/platforms/android-21/arch-arm/usr/include
-              /usr/lib/jvm/default-java/include
+        HINTS /usr/lib/jvm/default-java/include
               /usr/lib/jvm/java-11-openjdk/include
               /usr/lib/jvm/java-17-openjdk/include
               /usr/lib/jvm/java-21-openjdk/include
@@ -137,6 +136,12 @@ target_link_libraries(nexus_arm_loader PRIVATE
     nexus_core
     nexus_arm_compat
 )
+
+# Host-side ARM32 ELF inspector built from the same source as the guest
+# loader.  It makes the loader's parser and relocation report testable and
+# debuggable on the development host.
+add_executable(nexus_elf_inspect ${CMAKE_CURRENT_SOURCE_DIR}/guest/elf_loader.c)
+nexus_target_defaults(nexus_elf_inspect)
 
 # ARM32 shim libraries (built for ARM32 if cross-compiler available)
 if(ARM_CROSS_COMPILE)

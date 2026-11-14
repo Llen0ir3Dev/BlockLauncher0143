@@ -60,21 +60,56 @@ union jvalue {
 
 struct JNINativeInterface;
 struct JNIEnv {
-    const JNINativeInterface* functions;
+    const struct JNINativeInterface* functions;
 };
 
-struct JNIInvokeInterface;
-struct JavaVM {
-    const JNIInvokeInterface* functions;
-};
+struct JavaVM;
 
 // Eventual values from the JNI specification.  Only the ones the host-side
 // code references are declared here.
+enum {
+    JNI_OK = 0,
+    JNI_ERR = -1,
+    JNI_EDETACHED = -2,
+    JNI_EVERSION = -3,
+    JNI_ENOMEM = -4,
+    JNI_EEXIST = -5,
+    JNI_EINVAL = -6
+};
+
 enum {
     JNI_VERSION_1_1 = 0x00010001,
     JNI_VERSION_1_2 = 0x00010002,
     JNI_VERSION_1_4 = 0x00010004,
     JNI_VERSION_1_6 = 0x00010006
+};
+
+// The invoke interface layout matches the JNI specification so the same
+// member-call pattern works whether the real <jni.h> or this header is used.
+struct JNIInvokeInterface {
+    void* reserved0;
+    void* reserved1;
+    void* reserved2;
+    jint (*DestroyJavaVM)(JavaVM* vm);
+    jint (*AttachCurrentThread)(JavaVM* vm, void** penv, void* args);
+    jint (*DetachCurrentThread)(JavaVM* vm);
+    jint (*GetEnv)(JavaVM* vm, void** penv, jint version);
+    jint (*AttachCurrentThreadAsDaemon)(JavaVM* vm, void** penv, void* args);
+};
+
+struct JavaVM {
+    const JNIInvokeInterface* functions;
+#ifdef __cplusplus
+    jint DestroyJavaVM() { return functions->DestroyJavaVM(this); }
+    jint AttachCurrentThread(void** penv, void* args) {
+        return functions->AttachCurrentThread(this, penv, args);
+    }
+    jint DetachCurrentThread() { return functions->DetachCurrentThread(this); }
+    jint GetEnv(void** penv, jint version) { return functions->GetEnv(this, penv, version); }
+    jint AttachCurrentThreadAsDaemon(void** penv, void* args) {
+        return functions->AttachCurrentThreadAsDaemon(this, penv, args);
+    }
+#endif
 };
 
 #endif // NEXUS_HAVE_SYSTEM_JNI

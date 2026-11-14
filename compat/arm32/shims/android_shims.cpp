@@ -5,7 +5,6 @@
 // on the Linux host. The required declarations (android_LogPriority,
 // __android_log_vprint, ...) live in android_shims.hpp instead.
 #include <cstdarg>
-#include <jni.h>
 #include <pthread.h>
 #include <unordered_map>
 #include <mutex>
