@@ -26,66 +26,112 @@ jobs:
             build-essential cmake ninja-build pkg-config \
             libsdl2-dev zlib1g-dev libpng-dev \
             libgl1-mesa-dev libegl1-mesa-dev \
-            glslang-tools python3 \
+            glslang-tools python3 file \
+            qemu-user-static \
             fuse libfuse2 \
             wget ca-certificates
 
+      - name: Set up Android NDK (ARM32 guest cross-compiler)
+        uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r25c
+          add-to-path: true
+
       - name: Install AppImage tools
         run: |
-          # linuxdeploy
           wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
           chmod +x linuxdeploy-x86_64.AppImage
           sudo mv linuxdeploy-x86_64.AppImage /usr/local/bin/linuxdeploy
 
-          # appimagetool
           wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
           chmod +x appimagetool-x86_64.AppImage
           sudo mv appimagetool-x86_64.AppImage /usr/local/bin/appimagetool
 
-          # Verify
           linuxdeploy --version
           appimagetool --version
 
-      - name: Configure
+      - name: Configure (x86_64 host + ARM32 guest)
         run: |
           cmake -S . -B build -G Ninja \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DNEXUS_BUILD_TESTS=ON \
             -DNEXUS_BUILD_RUNTIME=ON \
             -DNEXUS_BUILD_LAUNCHER=ON \
-            -DNEXUS_BUILD_APPIMAGE=ON
+            -DNEXUS_BUILD_APPIMAGE=ON \
+            -DNEXUS_BUILD_GUEST_ARM32=ON \
+            -DNEXUS_ANDROID_NDK="${{ steps.setup-ndk.outputs.ndk-path }}"
 
       - name: Build
         run: cmake --build build -j"$(nproc)"
+
+      - name: Verify host binaries are x86_64
+        run: |
+          set -e
+          for b in build/nexus build/nexus-runtime build/nexus-launcher; do
+            echo "== $b =="
+            file "$b"
+            readelf -h "$b" | grep -E "Class|Machine"
+            if ! readelf -h "$b" | grep -q "X86-64"; then
+              echo "::error::$b was not built for x86_64"
+              exit 1
+            fi
+          done
+
+      - name: Verify ARM32 guest binaries
+        run: |
+          set -e
+          for b in build/guest-arm32/guest_smoke_static; do
+            echo "== $b =="
+            file "$b"
+            readelf -h "$b" | grep -E "Class|Machine"
+            if ! readelf -h "$b" | grep -q "ARM"; then
+              echo "::error::$b was not built for ARM32"
+              exit 1
+            fi
+            echo "-- TLS program header (must be aligned, 0x20) --"
+            readelf -l "$b" | grep -i TLS
+          done
 
       - name: Test
         run: ctest --test-dir build --output-on-failure
 
       - name: Build AppImage
-        if: always()
         run: |
           cmake --build build --target NEXUS-MCPE-x86_64-appimage -j"$(nproc)"
           ls -la build/appimage/
 
-      - name: Test AppImage
-        if: always()
+      - name: Test AppImage (x86_64 + bundled ARM32 runtime)
         run: |
+          set -e
           APPIMAGE=$(find build/appimage -name "*.AppImage" | head -1)
-          if [ -f "$APPIMAGE" ]; then
-            chmod +x "$APPIMAGE"
-            "$APPIMAGE" --version
-            echo "AppImage test passed: $APPIMAGE"
-          else
-            echo "AppImage not found"
-            exit 1
-          fi
+          test -n "$APPIMAGE"
+          chmod +x "$APPIMAGE"
+          file "$APPIMAGE"
+          "$APPIMAGE" --version
+
+          echo "-- inspecting AppImage contents --"
+          rm -rf squashfs-root
+          "$APPIMAGE" --appimage-extract >/dev/null
+          test -f squashfs-root/usr/bin/qemu-arm-static || {
+            echo "::error::bundled qemu-arm-static missing"; exit 1; }
+          file squashfs-root/usr/bin/qemu-arm-static
+          test -d squashfs-root/usr/share/nexus-mcpe/compat/arm32 || {
+            echo "::error::bundled ARM32 guest runtime missing"; exit 1; }
+          file squashfs-root/usr/share/nexus-mcpe/compat/arm32/guest_smoke_static
 
       - name: Upload AppImage artifact
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: NEXUS-MCPE-x86_64-AppImage
           path: build/appimage/*.AppImage
+          retention-days: 30
+
+      - name: Upload ARM32 guest runtime artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NEXUS-ARM32-guest-runtime
+          path: build/guest-arm32/
           retention-days: 30
 
       - name: Show versions
