@@ -14,6 +14,9 @@ NEXUS-MCPE-Linux.zip
 # Large derived symbol dumps from proprietary binaries
 analysis/symbols/
 
+# Local toolchain build state
+.config
+
 # Logs, caches, editor files
 *.log
 .cache/
