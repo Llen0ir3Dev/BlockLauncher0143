@@ -596,6 +596,321 @@ static int load_and_relocate(const char* path) {
     return 0;
 }
 
+// ---------------------------------------------------------------------------
+// Dependency-tree loading (guest only)
+//
+// The genuine libminecraftpe.so needs libfmod.so, libgnustl_shared.so and
+// Android system libraries.  A real loader maps every module first, then
+// resolves each relocation against the exports of all modules.
+// ---------------------------------------------------------------------------
+
+#define NEXUS_MAX_MODULES 24
+
+typedef struct {
+    char name[128];
+    char path[512];
+    uint8_t* base;
+    size_t span;
+    uint32_t min_vaddr, max_vaddr;
+    intptr_t bias;
+    nexus_dynamic dyn;
+    const Elf32_Sym* symtab;
+    const char* strtab;
+    size_t symcount;
+} nexus_module;
+
+static nexus_module g_modules[NEXUS_MAX_MODULES];
+static size_t g_module_count = 0;
+
+static const char* const g_system_libs[] = {
+    "libc.so",   "libm.so",   "libdl.so",      "liblog.so",  "libandroid.so",
+    "libEGL.so", "libGLESv2.so", "libOpenSLES.so", "libstdc++.so",
+    "libz.so",   "libgcc.so", NULL
+};
+
+static int is_system_lib(const char* name) {
+    for (size_t i = 0; g_system_libs[i]; ++i) {
+        if (strcmp(name, g_system_libs[i]) == 0) return 1;
+    }
+    return 0;
+}
+
+static const char* path_basename(const char* path) {
+    const char* slash = strrchr(path, '/');
+    return slash ? slash + 1 : path;
+}
+
+static void path_dirname(const char* path, char* out, size_t out_size) {
+    const char* slash = strrchr(path, '/');
+    if (!slash) {
+        snprintf(out, out_size, ".");
+        return;
+    }
+    const size_t n = (size_t)(slash - path);
+    if (n >= out_size) {
+        snprintf(out, out_size, ".");
+        return;
+    }
+    memcpy(out, path, n);
+    out[n] = '\0';
+}
+
+static int map_image(const uint8_t* data, size_t size, uint8_t** out_base,
+                     size_t* out_span, uint32_t* out_min, uint32_t* out_max) {
+    const Elf32_Ehdr* eh = (const Elf32_Ehdr*)data;
+    const Elf32_Phdr* ph = (const Elf32_Phdr*)(data + eh->e_phoff);
+    uint32_t min_vaddr = UINT32_MAX, max_vaddr = 0;
+    for (int i = 0; i < eh->e_phnum; ++i) {
+        if (ph[i].p_type != PT_LOAD) continue;
+        const uint32_t start = ph[i].p_vaddr & ~(NEXUS_PAGE - 1);
+        const uint32_t end = (ph[i].p_vaddr + ph[i].p_memsz + NEXUS_PAGE - 1) &
+                             ~(NEXUS_PAGE - 1);
+        if (start < min_vaddr) min_vaddr = start;
+        if (end > max_vaddr) max_vaddr = end;
+    }
+    if (min_vaddr == UINT32_MAX || max_vaddr <= min_vaddr) return -1;
+    const size_t span = max_vaddr - min_vaddr;
+    void* reserve = mmap(NULL, span, PROT_NONE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (reserve == MAP_FAILED) return -1;
+    uint8_t* base = (uint8_t*)reserve;
+    for (int i = 0; i < eh->e_phnum; ++i) {
+        if (ph[i].p_type != PT_LOAD) continue;
+        const uint32_t seg_start = ph[i].p_vaddr & ~(NEXUS_PAGE - 1);
+        const uint32_t page_delta = ph[i].p_vaddr - seg_start;
+        const size_t seg_len = (size_t)page_delta + ph[i].p_memsz;
+        void* target = base + (seg_start - min_vaddr);
+        int prot = PROT_READ;
+        if (ph[i].p_flags & PF_W) prot |= PROT_WRITE;
+        if (ph[i].p_flags & PF_X) prot |= PROT_EXEC;
+        if (mmap(target, seg_len, PROT_READ | PROT_WRITE,
+                 MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED, -1, 0) == MAP_FAILED) {
+            munmap(reserve, span);
+            return -1;
+        }
+        if (ph[i].p_filesz) {
+            memcpy((uint8_t*)target + page_delta, data + ph[i].p_offset, ph[i].p_filesz);
+        }
+        if (mprotect(target, seg_len, prot) != 0) {
+            munmap(reserve, span);
+            return -1;
+        }
+    }
+    *out_base = base;
+    *out_span = span;
+    *out_min = min_vaddr;
+    *out_max = max_vaddr;
+    return 0;
+}
+
+static int load_module(const char* path, int depth) {
+    if (depth > 8) {
+        printf("  dependency depth exceeded for %s\n", path);
+        return -1;
+    }
+    const char* name = path_basename(path);
+    if (is_system_lib(name)) return 0;  // provided by the guest/bionic layer
+    for (size_t i = 0; i < g_module_count; ++i) {
+        if (strcmp(g_modules[i].name, name) == 0) return 0;
+    }
+    if (g_module_count >= NEXUS_MAX_MODULES) {
+        printf("  too many modules; cannot load %s\n", path);
+        return -1;
+    }
+
+    size_t size = 0;
+    uint8_t* data = read_file(path, &size);
+    if (!data) {
+        printf("  missing dependency: %s\n", name);
+        return -1;
+    }
+    if (!validate_elf32_arm(data, size)) {
+        printf("  not a little-endian ARM32 ELF: %s\n", path);
+        free(data);
+        return -1;
+    }
+
+    nexus_module* m = &g_modules[g_module_count];
+    memset(m, 0, sizeof(*m));
+    snprintf(m->name, sizeof(m->name), "%s", name);
+    snprintf(m->path, sizeof(m->path), "%s", path);
+    if (map_image(data, size, &m->base, &m->span, &m->min_vaddr, &m->max_vaddr) != 0) {
+        printf("  cannot map %s\n", path);
+        free(data);
+        return -1;
+    }
+    m->bias = (intptr_t)m->base - (intptr_t)m->min_vaddr;
+    g_module_count++;
+
+    const Elf32_Ehdr* eh = (const Elf32_Ehdr*)data;
+    if (!parse_dynamic(eh, size, &m->dyn)) {
+        printf("  %s: no dynamic section\n", m->name);
+        free(data);
+        return 0;
+    }
+    m->symcount = dynamic_symbol_count(eh, size, &m->dyn);
+    if (m->dyn.symtab >= m->min_vaddr && m->dyn.symtab < m->max_vaddr) {
+        m->symtab = (const Elf32_Sym*)mapped_addr(m->base, m->min_vaddr, m->max_vaddr,
+                                                  m->dyn.symtab);
+    }
+    if (m->dyn.strtab >= m->min_vaddr && m->dyn.strtab < m->max_vaddr) {
+        m->strtab = (const char*)mapped_addr(m->base, m->min_vaddr, m->max_vaddr,
+                                            m->dyn.strtab);
+    }
+    printf("  loaded %-22s base=%p bias=%" PRIdPTR " symbols=%zu\n", m->name,
+           (void*)m->base, m->bias, m->symcount);
+
+    char dir[512];
+    path_dirname(path, dir, sizeof(dir));
+    for (size_t i = 0; i < m->dyn.needed_count; ++i) {
+        const char* needed = dynstr(eh, size, &m->dyn, m->dyn.needed[i]);
+        if (!needed || !*needed) continue;
+        if (is_system_lib(needed)) {
+            printf("    needs system library %s (guest/bionic)\n", needed);
+            continue;
+        }
+        char candidate[768];
+        snprintf(candidate, sizeof(candidate), "%s/%s", dir, needed);
+        load_module(candidate, depth + 1);
+    }
+    free(data);
+    return 0;
+}
+
+// Resolve a symbol name against the shim table, then the exports of every
+// loaded module (main module first, so it wins interposition).
+static void* find_exported_symbol(const char* name) {
+    void* shim = resolve_in_table(name);
+    if (shim) return shim;
+    for (size_t mi = 0; mi < g_module_count; ++mi) {
+        const nexus_module* m = &g_modules[mi];
+        if (!m->symtab || !m->strtab) continue;
+        for (size_t i = 0; i < m->symcount; ++i) {
+            const Elf32_Sym* sym = &m->symtab[i];
+            if (sym->st_name == 0 || sym->st_shndx == SHN_UNDEF) continue;
+            if (ELF32_ST_BIND(sym->st_info) == STB_LOCAL) continue;
+            if (strcmp(m->strtab + sym->st_name, name) == 0) {
+                return (void*)(uintptr_t)(sym->st_value + (uint32_t)m->bias);
+            }
+        }
+    }
+    return NULL;
+}
+
+static void relocate_module_tree(nexus_module* m, nexus_reloc_stats* total) {
+    nexus_reloc_stats stats;
+    memset(&stats, 0, sizeof(stats));
+    uint32_t* cache = m->symcount ? (uint32_t*)calloc(m->symcount, sizeof(uint32_t)) : NULL;
+    uint8_t* done = m->symcount ? (uint8_t*)calloc(m->symcount, 1) : NULL;
+
+    for (int pass = 0; pass < 2; ++pass) {
+        const uint32_t addr = pass ? m->dyn.jmprel : m->dyn.rel;
+        const uint32_t bytes = pass ? m->dyn.pltrelsz : m->dyn.relsz;
+        if (!addr || !bytes) continue;
+        if (pass && m->dyn.pltrel && m->dyn.pltrel != DT_REL) continue;
+        const Elf32_Rel* rel = (const Elf32_Rel*)mapped_addr(m->base, m->min_vaddr,
+                                                             m->max_vaddr, addr);
+        if (!rel) continue;
+        const size_t count = bytes / sizeof(Elf32_Rel);
+        for (size_t i = 0; i < count; ++i) {
+            const uint32_t type = ELF32_R_TYPE(rel[i].r_info);
+            const uint32_t sym_index = ELF32_R_SYM(rel[i].r_info);
+            uint32_t* where = (uint32_t*)mapped_addr(m->base, m->min_vaddr, m->max_vaddr,
+                                                     rel[i].r_offset);
+            if (!where) {
+                record_unresolved(&stats, "(relocation outside mapped image)");
+                continue;
+            }
+            stats.total++;
+            if (type < 64) stats.by_type[type]++;
+            switch (type) {
+                case R_ARM_NONE:
+                    stats.applied++;
+                    break;
+                case R_ARM_RELATIVE: {
+                    const uint32_t addend = *where;
+                    *where = addend + (uint32_t)m->bias;
+                    stats.relative++;
+                    stats.applied++;
+                    break;
+                }
+                case R_ARM_ABS32:
+                case R_ARM_GLOB_DAT:
+                case R_ARM_JUMP_SLOT: {
+                    const char* name = NULL;
+                    void* target = NULL;
+                    if (m->symtab && m->strtab && sym_index != 0 &&
+                        sym_index < m->symcount) {
+                        const Elf32_Sym* sym = &m->symtab[sym_index];
+                        name = m->strtab + sym->st_name;
+                    }
+                    if (name && cache && done) {
+                        if (done[sym_index]) {
+                            if (cache[sym_index]) target = (void*)(uintptr_t)cache[sym_index];
+                        } else {
+                            target = find_exported_symbol(name);
+                            cache[sym_index] = (uint32_t)(uintptr_t)target;
+                            done[sym_index] = 1;
+                        }
+                    }
+                    if (target) {
+                        // R_ARM_ABS32 uses the value stored at the site as the
+                        // addend; GLOB_DAT/JUMP_SLOT are S.
+                        const uint32_t addend = (type == R_ARM_ABS32) ? *where : 0;
+                        *where = (uint32_t)(uintptr_t)target + addend;
+                        stats.applied++;
+                    } else {
+                        record_unresolved(&stats, name ? name : arm_reloc_name(type));
+                    }
+                    break;
+                }
+                case R_ARM_COPY:
+                    record_unresolved(&stats, "(R_ARM_COPY definition)");
+                    break;
+                default:
+                    record_unresolved(&stats, arm_reloc_name(type));
+                    break;
+            }
+        }
+    }
+    free(cache);
+    free(done);
+
+    printf("  relocated %-22s total=%" PRId64 " applied=%" PRId64
+           " unresolved=%" PRId64 "\n",
+           m->name, stats.total, stats.applied, stats.unresolved);
+    if (stats.reported_count) {
+        for (size_t i = 0; i < stats.reported_count && i < 12; ++i) {
+            printf("    unresolved: %s\n", stats.reported[i]);
+        }
+        if (stats.reported_count > 12) {
+            printf("    ... %zu distinct names in total\n", stats.reported_count);
+        }
+    }
+    total->total += stats.total;
+    total->applied += stats.applied;
+    total->unresolved += stats.unresolved;
+    total->relative += stats.relative;
+}
+
+static int load_tree(const char* path) {
+    printf("NEXUS ARM32 dependency-tree load: %s\n", path);
+    if (load_module(path, 0) != 0 || g_module_count == 0) {
+        printf("nexus-loader: could not load %s\n", path);
+        return 1;
+    }
+    printf("  modules loaded: %zu\n", g_module_count);
+    nexus_reloc_stats total;
+    memset(&total, 0, sizeof(total));
+    for (size_t i = 0; i < g_module_count; ++i) {
+        relocate_module_tree(&g_modules[i], &total);
+    }
+    printf("  TOTAL: modules=%zu relocations=%" PRId64 " applied=%" PRId64
+           " unresolved=%" PRId64 "\n",
+           g_module_count, total.total, total.applied, total.unresolved);
+    printf("  note: init arrays and JNI/Android entry points are not called yet\n");
+    return 0;
+}
+
 #endif // defined(__arm__)
 
 static void usage(const char* argv0) {
@@ -603,6 +918,7 @@ static void usage(const char* argv0) {
     printf("Usage:\n");
     printf("  %s --inspect FILE   parse an ARM32 ELF and report its needs\n", argv0);
     printf("  %s --load FILE      map and relocate in this process (ARM32 only)\n", argv0);
+    printf("  %s --load-tree FILE map a module and its dependencies (ARM32 only)\n", argv0);
     printf("  %s --help\n", argv0);
 }
 
@@ -627,6 +943,14 @@ int main(int argc, char** argv) {
         // On a non-ARM host, printing a relocation report is still useful, but
         // executing or applying 32-bit ARM relocations into a 64-bit address
         // space would be wrong.  Fall back to inspection.
+        printf("nexus-loader: host is not ARM32; running inspection instead\n");
+        return inspect(argv[2]);
+#endif
+    }
+    if (strcmp(argv[1], "--load-tree") == 0) {
+#if defined(__arm__)
+        return load_tree(argv[2]);
+#else
         printf("nexus-loader: host is not ARM32; running inspection instead\n");
         return inspect(argv[2]);
 #endif
