@@ -136,8 +136,13 @@ function(nexus_create_appimage)
   endforeach()
 
   # Run linuxdeploy last; --output appimage also invokes appimagetool.
+  # The AppDir intentionally contains ARM32 guest runtime files under
+  # usr/share/nexus-mcpe/compat/arm32, so appimagetool must be told that the
+  # *application* architecture is x86_64 instead of guessing (it otherwise
+  # aborts with "More than one architectures were found").
   list(APPEND _cmds
-    COMMAND ${LINUXDEPLOY_EXECUTABLE}
+    COMMAND ${CMAKE_COMMAND} -E env ARCH=x86_64
+      ${LINUXDEPLOY_EXECUTABLE}
       --appdir ${APPDIR}
       --executable ${BIN_DIR}/$<TARGET_FILE_NAME:${ARG_TARGET}>
       --desktop-file ${APPLICATIONS_DIR}/${DESKTOP_BASENAME}
