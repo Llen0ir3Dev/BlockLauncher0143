@@ -81,7 +81,7 @@ jobs:
       - name: Verify ARM32 guest binaries
         run: |
           set -e
-          for b in build/guest-arm32/guest_smoke_static; do
+          for b in build/guest-arm32/guest_smoke_static build/guest-arm32/nexus_elf_loader; do
             echo "== $b =="
             file "$b"
             readelf -h "$b" | grep -E "Class|Machine"
@@ -113,7 +113,7 @@ jobs:
           echo "-- inspecting AppImage contents --"
           rm -rf squashfs-root
           "$APPIMAGE" --appimage-extract >/dev/null
-          for b in nexus-launcher nexus nexus-runtime nexus_arm_loader; do
+          for b in nexus-launcher nexus nexus-runtime nexus_arm_loader nexus_elf_inspect; do
             test -x "squashfs-root/usr/bin/$b" || {
               echo "::error::bundled $b missing"; exit 1; }
             file "squashfs-root/usr/bin/$b"
@@ -126,7 +126,11 @@ jobs:
           file squashfs-root/usr/bin/qemu-arm-static
           test -d squashfs-root/usr/share/nexus-mcpe/compat/arm32 || {
             echo "::error::bundled ARM32 guest runtime missing"; exit 1; }
-          file squashfs-root/usr/share/nexus-mcpe/compat/arm32/guest_smoke_static
+          for g in guest_smoke_static nexus_elf_loader; do
+            test -f "squashfs-root/usr/share/nexus-mcpe/compat/arm32/$g" || {
+              echo "::error::bundled $g missing"; exit 1; }
+            file "squashfs-root/usr/share/nexus-mcpe/compat/arm32/$g"
+          done
 
           echo "-- launcher detects no game (and stays honest) --"
           HOME=/tmp/nexus-ci-home squashfs-root/usr/bin/nexus-launcher --detect || true

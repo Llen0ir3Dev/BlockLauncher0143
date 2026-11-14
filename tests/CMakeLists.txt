@@ -21,6 +21,9 @@ nexus_add_test(test_bridge unit/test_bridge.cpp nexus_bridge)
 nexus_add_test(test_mod unit/test_mod.cpp nexus_mod)
 nexus_add_test(test_mcpe unit/test_mcpe.cpp nexus_mcpe)
 nexus_add_test(test_game_source unit/test_game_source.cpp nexus_platform)
+if(TARGET nexus_elf_inspect)
+  add_test(NAME elf_inspect_help COMMAND nexus_elf_inspect --help)
+endif()
 
 # End-to-end test through the built executables: CLI, shader pipeline, MCPE
 # assets, worldgen, bridge roundtrip and launcher headless modes.  The real

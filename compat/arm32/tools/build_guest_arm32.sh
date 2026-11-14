@@ -97,6 +97,12 @@ echo "  output    : $OUT"
     "${ROOT}/guest/guest_smoke.c" -o "${OUT}/guest_smoke_static"
 python3 "${HERE}/patch_tls_align.py" "${OUT}/guest_smoke_static"
 
+# 1b. In-tree ARM32 ELF loader (shipping guest tool).  It parses, maps and
+#     relocates Android ARM32 shared objects without a device linker.
+"${CC[@]}" -O2 -fno-stack-protector -static -L"$OUT/lib" \
+    "${ROOT}/guest/elf_loader.c" -o "${OUT}/nexus_elf_loader"
+python3 "${HERE}/patch_tls_align.py" "${OUT}/nexus_elf_loader"
+
 # 2. JNI_OnLoad harness (development only).  This one is dynamically linked
 #    and therefore needs a bionic linker at run time; it is used on the dev
 #    machine only and must not be bundled into the AppImage.

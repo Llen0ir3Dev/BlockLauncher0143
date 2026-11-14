@@ -284,6 +284,9 @@ if(NEXUS_BUILD_APPIMAGE)
     if(TARGET nexus_arm_loader)
       list(APPEND NEXUS_APPIMAGE_EXTRA_BINARIES nexus_arm_loader)
     endif()
+    if(TARGET nexus_elf_inspect)
+      list(APPEND NEXUS_APPIMAGE_EXTRA_BINARIES nexus_elf_inspect)
+    endif()
 
     nexus_create_appimage(
       TARGET nexus-launcher
