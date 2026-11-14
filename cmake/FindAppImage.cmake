@@ -77,15 +77,16 @@ function(nexus_create_appimage)
   set(ICONS_DIR ${SHARE_DIR}/icons/hicolor/256x256/apps)
   set(METADIR ${APPDIR}/usr/share/metainfo)
 
-  # Extract desktop file basename
+  # Extract basenames
   get_filename_component(DESKTOP_BASENAME ${ARG_DESKTOP_FILE} NAME)
+  get_filename_component(ICON_BASENAME ${ARG_ICON_FILE} NAME)
 
   # Custom command to create AppImage
   add_custom_target(${ARG_APPIMAGE_NAME}-appimage
     COMMAND ${CMAKE_COMMAND} -E make_directory ${BIN_DIR} ${LIB_DIR} ${APPLICATIONS_DIR} ${ICONS_DIR} ${METADIR}
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${ARG_TARGET}> ${BIN_DIR}/
     COMMAND ${CMAKE_COMMAND} -E copy ${ARG_DESKTOP_FILE} ${APPLICATIONS_DIR}/
-    COMMAND ${CMAKE_COMMAND} -E copy ${ARG_ICON_FILE} ${ICONS_DIR}/
+    COMMAND ${CMAKE_COMMAND} -E copy ${ARG_ICON_FILE} ${ICONS_DIR}/${ICON_BASENAME}
     COMMAND ${CMAKE_COMMAND} -E copy ${ARG_DESKTOP_FILE} ${METADIR}/${DESKTOP_BASENAME}
     COMMAND ${CMAKE_COMMAND} -E rename ${METADIR}/${DESKTOP_BASENAME} ${METADIR}/${ARG_APPIMAGE_NAME}.metainfo.xml
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
@@ -118,8 +119,8 @@ function(nexus_create_appimage)
     COMMAND ${LINUXDEPLOY_EXECUTABLE}
       --appdir ${APPDIR}
       --executable ${BIN_DIR}/$<TARGET_FILE_NAME:${ARG_TARGET}>
-      --desktop-file ${APPLICATIONS_DIR}/${CMAKE_FILE_NAME}
-      --icon-file ${ICONS_DIR}/${CMAKE_FILE_NAME}
+      --desktop-file ${APPLICATIONS_DIR}/${DESKTOP_BASENAME}
+      --icon-file ${ICONS_DIR}/${ICON_BASENAME}
       --output appimage
     WORKING_DIRECTORY ${OUTPUT_DIR}
     COMMENT "Running linuxdeploy to bundle ${ARG_APPIMAGE_NAME}"
