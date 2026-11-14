@@ -68,7 +68,7 @@ jobs:
       - name: Verify host binaries are x86_64
         run: |
           set -e
-          for b in build/nexus build/nexus-runtime build/nexus-launcher; do
+          for b in build/nexus build/nexus-runtime build/nexus-launcher build/compat/arm32/nexus_arm_loader; do
             echo "== $b =="
             file "$b"
             readelf -h "$b" | grep -E "Class|Machine"
@@ -113,12 +113,23 @@ jobs:
           echo "-- inspecting AppImage contents --"
           rm -rf squashfs-root
           "$APPIMAGE" --appimage-extract >/dev/null
+          for b in nexus-launcher nexus nexus-runtime nexus_arm_loader; do
+            test -x "squashfs-root/usr/bin/$b" || {
+              echo "::error::bundled $b missing"; exit 1; }
+            file "squashfs-root/usr/bin/$b"
+            if ! readelf -h "squashfs-root/usr/bin/$b" | grep -q "X86-64"; then
+              echo "::error::$b is not x86_64"; exit 1
+            fi
+          done
           test -f squashfs-root/usr/bin/qemu-arm-static || {
             echo "::error::bundled qemu-arm-static missing"; exit 1; }
           file squashfs-root/usr/bin/qemu-arm-static
           test -d squashfs-root/usr/share/nexus-mcpe/compat/arm32 || {
             echo "::error::bundled ARM32 guest runtime missing"; exit 1; }
           file squashfs-root/usr/share/nexus-mcpe/compat/arm32/guest_smoke_static
+
+          echo "-- launcher detects no game (and stays honest) --"
+          HOME=/tmp/nexus-ci-home squashfs-root/usr/bin/nexus-launcher --detect || true
 
       - name: Upload AppImage artifact
         uses: actions/upload-artifact@v4

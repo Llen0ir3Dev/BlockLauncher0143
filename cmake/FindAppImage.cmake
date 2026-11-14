@@ -41,7 +41,7 @@ find_package_handle_standard_args(AppImage
 function(nexus_create_appimage)
   set(options)
   set(oneValueArgs TARGET APPIMAGE_NAME DESKTOP_FILE ICON_FILE OUTPUT_DIR QEMU_BINARY)
-  set(multiValueArgs EXTRA_FILES LIBS_PLUGINS)
+  set(multiValueArgs EXTRA_FILES EXTRA_BINARIES LIBS_PLUGINS)
   cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   if(NOT ARG_TARGET)
@@ -108,6 +108,19 @@ function(nexus_create_appimage)
       COMMAND ${CMAKE_COMMAND} -E copy ${ARG_QEMU_BINARY} ${BIN_DIR}/)
   endif()
 
+  # Copy additional internal executables (nexus, nexus-runtime,
+  # nexus_arm_loader, ...).  These are build targets in this project, so use
+  # generator expressions to resolve their final paths and machine-specific
+  # file names.
+  foreach(_bin IN LISTS ARG_EXTRA_BINARIES)
+    if(TARGET ${_bin})
+      list(APPEND _cmds
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${_bin}> ${BIN_DIR}/)
+    else()
+      message(WARNING "EXTRA_BINARIES entry '${_bin}' is not a build target; skipping")
+    endif()
+  endforeach()
+
   # Copy extra files.  Expected format: "source -> destination".
   foreach(pair IN LISTS ARG_EXTRA_FILES)
     string(REGEX MATCH "^([^>]+)->(.+)$" _match "${pair}")
@@ -139,6 +152,11 @@ function(nexus_create_appimage)
     VERBATIM
   )
   add_dependencies(${ARG_APPIMAGE_NAME}-appimage ${ARG_TARGET})
+  foreach(_bin IN LISTS ARG_EXTRA_BINARIES)
+    if(TARGET ${_bin})
+      add_dependencies(${ARG_APPIMAGE_NAME}-appimage ${_bin})
+    endif()
+  endforeach()
 
   # Add test target
   add_custom_target(test-${ARG_APPIMAGE_NAME}-appimage

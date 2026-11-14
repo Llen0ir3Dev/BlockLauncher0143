@@ -96,9 +96,14 @@ if(ARM_COMPAT_SOURCES)
         ${CMAKE_CURRENT_SOURCE_DIR}/loader
         ${CMAKE_SOURCE_DIR}/include
     )
-    # JNI headers - use system JNI if available, otherwise provide stubs
+    # JNI headers - use a real JDK/NDK header when present, otherwise fall back
+    # to the bundled minimal declaration header (jni_min.h).  The compatibility
+    # library only touches opaque JNI pointers on the host, so either works and
+    # the host build never requires a JDK to be installed.
     find_path(JNI_H jni.h
-        HINTS ${ANDROID_NDK_PATH}/platforms/android-21/arch-arm/usr/include
+        HINTS ${ANDROID_NDK_PATH}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include
+              ${ANDROID_NDK_PATH}/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include
+              ${ANDROID_NDK_PATH}/platforms/android-21/arch-arm/usr/include
               /usr/lib/jvm/default-java/include
               /usr/lib/jvm/java-11-openjdk/include
               /usr/lib/jvm/java-17-openjdk/include
@@ -106,6 +111,7 @@ if(ARM_COMPAT_SOURCES)
     )
     if(JNI_H)
         target_include_directories(nexus_arm_compat PUBLIC ${JNI_H})
+        target_compile_definitions(nexus_arm_compat PUBLIC NEXUS_HAVE_SYSTEM_JNI)
         # jni.h includes platform-specific jni_md.h from a subdirectory
         # (e.g. include/linux/jni_md.h for OpenJDK on Linux).
         find_path(JNI_MD_H jni_md.h
@@ -117,8 +123,7 @@ if(ARM_COMPAT_SOURCES)
             target_include_directories(nexus_arm_compat PUBLIC ${JNI_MD_H})
         endif()
     else()
-        # Provide minimal JNI stubs for compilation without Android NDK
-        target_compile_definitions(nexus_arm_compat PRIVATE NEXUS_JNI_STUBS)
+        message(STATUS "No system JNI header found; using bundled jni_min.h declarations")
     endif()
 endif()
 

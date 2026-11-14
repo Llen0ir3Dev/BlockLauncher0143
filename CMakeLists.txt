@@ -277,6 +277,14 @@ if(NEXUS_BUILD_APPIMAGE)
         "${CMAKE_BINARY_DIR}/guest-arm32 -> usr/share/nexus-mcpe/compat/arm32")
     endif()
 
+    set(NEXUS_APPIMAGE_EXTRA_BINARIES nexus)
+    if(TARGET nexus-runtime)
+      list(APPEND NEXUS_APPIMAGE_EXTRA_BINARIES nexus-runtime)
+    endif()
+    if(TARGET nexus_arm_loader)
+      list(APPEND NEXUS_APPIMAGE_EXTRA_BINARIES nexus_arm_loader)
+    endif()
+
     nexus_create_appimage(
       TARGET nexus-launcher
       APPIMAGE_NAME "NEXUS-MCPE-x86_64"
@@ -284,6 +292,8 @@ if(NEXUS_BUILD_APPIMAGE)
       ICON_FILE "${CMAKE_SOURCE_DIR}/resources/nexus-mcpe.png"
       OUTPUT_DIR "${CMAKE_BINARY_DIR}/appimage"
       QEMU_BINARY "${NEXUS_QEMU_ARM}"
+      EXTRA_BINARIES
+        ${NEXUS_APPIMAGE_EXTRA_BINARIES}
       EXTRA_FILES
         ${NEXUS_APPIMAGE_EXTRA_FILES}
     )

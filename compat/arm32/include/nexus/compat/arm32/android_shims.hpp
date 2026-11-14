@@ -13,7 +13,11 @@
 #include <sys/mman.h>
 #include <pthread.h>
 #include <dlfcn.h>
+#if defined(NEXUS_HAVE_SYSTEM_JNI)
 #include <jni.h>
+#else
+#include <nexus/compat/arm32/jni_min.h>
+#endif
 
 /// Android API level for 0.14.3 (API 17-22)
 #define ANDROID_API_LEVEL 19
