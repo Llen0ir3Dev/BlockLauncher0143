@@ -25,8 +25,8 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             build-essential cmake ninja-build pkg-config \
             libsdl2-dev zlib1g-dev libpng-dev \
-            libgl1-mesa-dev libegl1-mesa-dev \
-            glslang-tools python3 file \
+            libgl1-mesa-dev libgles2-mesa-dev libegl1-mesa-dev libgl1-mesa-dri \
+            glslang-tools python3 file xvfb \
             qemu-user-static \
             fuse libfuse2 \
             wget ca-certificates
@@ -68,7 +68,7 @@ jobs:
       - name: Verify host binaries are x86_64
         run: |
           set -e
-          for b in build/nexus build/nexus-runtime build/nexus-launcher build/compat/arm32/nexus_arm_loader; do
+          for b in build/nexus build/nexus-runtime build/nexus-launcher build/compat/arm32/nexus_arm_loader build/compat/arm32/nexus_gfx_host; do
             echo "== $b =="
             file "$b"
             readelf -h "$b" | grep -E "Class|Machine"
@@ -81,7 +81,7 @@ jobs:
       - name: Verify ARM32 guest binaries
         run: |
           set -e
-          for b in build/guest-arm32/guest_smoke_static build/guest-arm32/nexus_elf_loader; do
+          for b in build/guest-arm32/guest_smoke_static build/guest-arm32/nexus_elf_loader build/guest-arm32/nexus_gfx_smoke; do
             echo "== $b =="
             file "$b"
             readelf -h "$b" | grep -E "Class|Machine"
@@ -95,6 +95,27 @@ jobs:
 
       - name: Test
         run: ctest --test-dir build --output-on-failure
+
+      - name: Graphics bridge (headless + visible window)
+        run: |
+          set -e
+          bash compat/arm32/tools/run_gfx_smoke.sh \
+            build/compat/arm32/nexus_gfx_host qemu-arm \
+            build/guest-arm32/nexus_gfx_smoke build/gfx-headless.png
+          file build/gfx-headless.png
+          xvfb-run -a bash compat/arm32/tools/run_gfx_smoke.sh \
+            build/compat/arm32/nexus_gfx_host qemu-arm \
+            build/guest-arm32/nexus_gfx_smoke build/gfx-window.png --window
+          file build/gfx-window.png
+
+      - name: Upload graphics bridge frames
+        uses: actions/upload-artifact@v4
+        with:
+          name: NEXUS-GFX-bridge-frames
+          path: |
+            build/gfx-headless.png
+            build/gfx-window.png
+          retention-days: 30
 
       - name: Build AppImage
         run: |
@@ -113,7 +134,7 @@ jobs:
           echo "-- inspecting AppImage contents --"
           rm -rf squashfs-root
           "$APPIMAGE" --appimage-extract >/dev/null
-          for b in nexus-launcher nexus nexus-runtime nexus_arm_loader nexus_elf_inspect; do
+          for b in nexus-launcher nexus nexus-runtime nexus_arm_loader nexus_elf_inspect nexus_gfx_host; do
             test -x "squashfs-root/usr/bin/$b" || {
               echo "::error::bundled $b missing"; exit 1; }
             file "squashfs-root/usr/bin/$b"
@@ -126,7 +147,7 @@ jobs:
           file squashfs-root/usr/bin/qemu-arm-static
           test -d squashfs-root/usr/share/nexus-mcpe/compat/arm32 || {
             echo "::error::bundled ARM32 guest runtime missing"; exit 1; }
-          for g in guest_smoke_static nexus_elf_loader; do
+          for g in guest_smoke_static nexus_elf_loader nexus_gfx_smoke; do
             test -f "squashfs-root/usr/share/nexus-mcpe/compat/arm32/$g" || {
               echo "::error::bundled $g missing"; exit 1; }
             file "squashfs-root/usr/share/nexus-mcpe/compat/arm32/$g"

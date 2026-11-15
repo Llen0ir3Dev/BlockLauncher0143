@@ -35,6 +35,7 @@
 
 #if defined(__arm__)
 #include "bionic_shims.h"
+#include "gfx_client.h"
 #include "jni_env.h"
 #endif
 
@@ -909,6 +910,7 @@ static int load_tree(const char* path) {
     extern void nexus_register_bionic_symbols(void);
     nexus_register_bionic_symbols();
     nexus_register_android_shims();
+    nexus_register_gfx_symbols();
     if (load_module(path, 0) != 0 || g_module_count == 0) {
         printf("nexus-loader: could not load %s\n", path);
         return 1;

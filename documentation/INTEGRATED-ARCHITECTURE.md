@@ -86,28 +86,28 @@ is still “the host side”.
 | Guest | static bionic ARM32 runtime under `qemu-arm` | exists |
 | Guest | in-tree ELF loader, 3-module dependency tree | exists; 58 811 relocations, 0 in game deps |
 | Guest | bionic symbol registry (253 libc/libm/libdl/libz symbols) | exists |
-| Guest | Android platform APIs (`liblog`, `libandroid`) | **stubs not yet written** |
-| Guest | EGL/GLES2 client forwarding | **missing** (96 symbols) |
+| Guest | Android platform APIs (`liblog`, `libandroid`, looper, input, config) | 36 imports implemented and registered |
+| Guest | EGL/GLES2 client forwarding | exists; all 96 imports forwarded over the socket |
 | Guest | OpenSLES audio client | **missing** |
-| Guest | input / `AInputQueue` / `ALooper` | **missing** (part of 36 Android symbols) |
-| Guest | JNI `JavaVM`/`JNIEnv` environment | prototype exists only for the dev-only dynamic harness |
-| Guest | `JNI_OnLoad` invocation through the in-tree loader | **missing** |
+| Guest | JNI `JavaVM`/`JNIEnv` environment | exists; synthetic facade that logs every lookup |
+| Guest | `JNI_OnLoad` invocation through the in-tree loader | verified with the genuine library |
 | Guest | `ANativeActivity_onCreate` + lifecycle | **missing** |
-| Host | window + EGL/GLES2 context | prototype shims exist; no server |
-| Host | GL command execution / resource mirror | **missing** |
+| Host | window + EGL/GLES2 context (`nexus_gfx_host`) | exists; headless surfaceless + SDL2/X11 window paths |
+| Host | GL command execution / resource mirror | exists; dispatches the full protocol to Mesa |
 | Host | audio output | **missing** |
 | Host | input capture and event translation | **missing** |
-| Integration | assets (`AAssetManager`) from imported APK | **missing** |
+| Integration | assets (`AAssetManager`) from imported APK | **missing** (opens logged and refused) |
 | Integration | mods/packs wired to the running engine | **missing** |
 
-The unresolved symbol audit of the genuine library currently reports exactly
-**133 distinct imports**:
+The unresolved symbol audit of the genuine library now reports **0 imports**
+after the loader registers the bionic registry, the 36 Android shims and the
+96 EGL/GLES2 forwards.  Everything the three shipped modules import is resolved:
 
-- 96 `gl*`/`egl*` entry points,
+- 96 `gl*`/`egl*` entry points (guest client → host renderer),
 - 36 Android platform entry points,
-- `_tolower_tab_` and `bsd_signal`.
-
-Everything C/C++ (STL, FMOD, libc, libm, libz, libdl) already resolves.
+- `_tolower_tab_` and `bsd_signal`,
+- 253 libc/libm/libdl/libz symbols from the static-bionic registry,
+- plus C++/STL/FMOD symbols exported between the three modules.
 
 ## 5. Required startup sequence
 
@@ -203,16 +203,21 @@ engine runs, these features stay host-tooling only and are labelled as such.
 | --- | --- | --- |
 | M1 | Guest JNI bootstrap | `JNI_OnLoad` of the genuine library returns `0x00010004` under `qemu-arm` through the in-tree loader |
 | M2 | Android shims | the 36 Android imports resolve; no unresolved non-GL symbol remains |
-| M3 | GL forwarding core | host window shows a colour set by a guest `glClear` through the protocol |
-| M4 | Textured triangle | guest uploads a texture and draws a triangle; screenshot matches |
+| M3 | GL forwarding core | **verified headless**: guest `glClear` → host Mesa → guest readback and a host PNG with the exact expected pixels |
+| M4 | Textured triangle | **verified headless**: guest compiles both shaders, uploads an interleaved VBO and a 2x2 texture, draws the triangle and reads back the exact sampled colour |
 | M5 | Activity lifecycle | `ANativeActivity_onCreate` + framework callbacks reach the engine's own window/GL initialisation |
 | M6 | First game frame | the genuine Minecraft title/menu is visible in the NEXUS window |
 | M7 | Playable session | new world, movement, block placement, save/load on Ubuntu 22.04 x86_64 |
 | M8 | Integrated packaging | a fresh user imports the APK and reaches M6 with one double-click |
 
 M1–M4 can be validated on the development host under `qemu-arm` (they are
-architecture-independent of the host CPU). M5–M8 must be validated on the
-x86_64 target through the AppImage in CI or on a real Ubuntu 22.04 machine.
+architecture-independent of the host CPU). M3 and M4 are covered by the
+`gfx_bridge_smoke` test: `qemu-arm` runs the ARM32 guest client, which drives
+the x86_64 host process and reads back real Mesa pixels. The SDL2/X11 window
+path exists and is exercised under `xvfb` in CI, but has not yet been validated
+on a physical Ubuntu 22.04 desktop; the dev host has no display server. M5–M8
+must be validated on the x86_64 target through the AppImage in CI or on a real
+Ubuntu 22.04 machine.
 
 ## 8. What is explicitly not claimed
 
@@ -224,9 +229,9 @@ x86_64 target through the AppImage in CI or on a real Ubuntu 22.04 machine.
 
 ## 9. Immediate engineering order
 
-1. Android shims + JNI facade through the in-tree loader (M1, M2).
-2. Host service + EGL/GLES2 forwarding protocol (M3).
-3. Texture/buffer path and a textured triangle (M4).
+1. ~~Android shims + JNI facade through the in-tree loader (M1, M2).~~
+2. ~~Host service + EGL/GLES2 forwarding protocol (M3).~~
+3. ~~Texture/buffer path and a textured triangle (M4).~~
 4. `ANativeActivity` lifecycle and `AAssetManager` over the real APK (M5).
 5. Iterate on the engine's real startup log until M6.
 6. Only then expose “Play” as a first-class frontend action and wire mods/packs.

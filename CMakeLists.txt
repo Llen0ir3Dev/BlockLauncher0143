@@ -287,6 +287,9 @@ if(NEXUS_BUILD_APPIMAGE)
     if(TARGET nexus_elf_inspect)
       list(APPEND NEXUS_APPIMAGE_EXTRA_BINARIES nexus_elf_inspect)
     endif()
+    if(TARGET nexus_gfx_host)
+      list(APPEND NEXUS_APPIMAGE_EXTRA_BINARIES nexus_gfx_host)
+    endif()
 
     nexus_create_appimage(
       TARGET nexus-launcher

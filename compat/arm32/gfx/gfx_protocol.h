@@ -1,0 +1,151 @@
+#ifndef NEXUS_ARM32_GFX_PROTOCOL_H
+#define NEXUS_ARM32_GFX_PROTOCOL_H
+
+/*
+ * NEXUS ARM32 graphics protocol.
+ *
+ * The ARM32 guest cannot load the x86_64 host's EGL/GLES2 libraries.  The
+ * guest therefore implements the GLES2/EGL entry points that the genuine game
+ * imports, serialises them into this protocol, and the x86_64 host executes
+ * them against a real Mesa GLES2 context in the visible window.
+ *
+ * Framing (all integers little-endian):
+ *
+ *   request : u32 command | u32 payload_bytes | payload
+ *   response: i32 status  | u32 payload_bytes | payload
+ *
+ * Scalar GL arguments travel as 32-bit words; pointers/arrays travel in the
+ * payload.  Status 0 means success.  Negative statuses are protocol-level
+ * failures, never GL errors (glGetError is a normal command).
+ */
+
+#include <stdint.h>
+
+#define NEXUS_GFX_VERSION 1u
+
+#define NEXUS_GFX_OK 0
+#define NEXUS_GFX_UNIMPLEMENTED (-1)
+#define NEXUS_GFX_BAD_REQUEST (-2)
+#define NEXUS_GFX_IO_ERROR (-3)
+
+/* Maximum scalar words carried by one command. */
+#define NEXUS_GFX_MAX_ARGS 16
+
+typedef enum {
+    /* ---- EGL ---------------------------------------------------------- */
+    NEXUS_GFX_EGL_INITIALIZE = 0x0100,
+    NEXUS_GFX_EGL_CHOOSE_CONFIG,
+    NEXUS_GFX_EGL_GET_CONFIG_ATTRIB,
+    NEXUS_GFX_EGL_CREATE_WINDOW_SURFACE,
+    NEXUS_GFX_EGL_CREATE_CONTEXT,
+    NEXUS_GFX_EGL_MAKE_CURRENT,
+    NEXUS_GFX_EGL_SWAP_INTERVAL,
+    NEXUS_GFX_EGL_SWAP_BUFFERS,
+    NEXUS_GFX_EGL_QUERY_SURFACE,
+    NEXUS_GFX_EGL_GET_ERROR,
+    NEXUS_GFX_EGL_TERMINATE,
+
+    /* ---- GL state ----------------------------------------------------- */
+    NEXUS_GFX_GL_ENABLE = 0x0200,
+    NEXUS_GFX_GL_DISABLE,
+    NEXUS_GFX_GL_BLEND_FUNC,
+    NEXUS_GFX_GL_BLEND_FUNC_SEPARATE,
+    NEXUS_GFX_GL_COLOR_MASK,
+    NEXUS_GFX_GL_DEPTH_FUNC,
+    NEXUS_GFX_GL_DEPTH_MASK,
+    NEXUS_GFX_GL_STENCIL_FUNC_SEPARATE,
+    NEXUS_GFX_GL_STENCIL_OP_SEPARATE,
+    NEXUS_GFX_GL_STENCIL_MASK,
+    NEXUS_GFX_GL_SCISSOR,
+    NEXUS_GFX_GL_VIEWPORT,
+    NEXUS_GFX_GL_CLEAR_STENCIL,
+    NEXUS_GFX_GL_CLEAR_DEPTHF,
+    NEXUS_GFX_GL_CLEAR_COLOR,
+    NEXUS_GFX_GL_CLEAR,
+    NEXUS_GFX_GL_POLYGON_OFFSET,
+    NEXUS_GFX_GL_CULL_FACE,
+    NEXUS_GFX_GL_DEPTH_RANGEF,
+    NEXUS_GFX_GL_ACTIVE_TEXTURE,
+    NEXUS_GFX_GL_TEX_PARAMETERI,
+    NEXUS_GFX_GL_PIXEL_STOREI,
+    NEXUS_GFX_GL_HINT,
+    NEXUS_GFX_GL_LINE_WIDTH,
+    NEXUS_GFX_GL_FRONT_FACE,
+    NEXUS_GFX_GL_GENERATE_MIPMAP,
+    NEXUS_GFX_GL_FLUSH,
+    NEXUS_GFX_GL_FINISH,
+    NEXUS_GFX_GL_RELEASE_SHADER_COMPILER,
+
+    /* ---- GL buffers / textures ---------------------------------------- */
+    NEXUS_GFX_GL_GEN_BUFFERS,
+    NEXUS_GFX_GL_BIND_BUFFER,
+    NEXUS_GFX_GL_BUFFER_DATA,
+    NEXUS_GFX_GL_BUFFER_SUB_DATA,
+    NEXUS_GFX_GL_DELETE_BUFFERS,
+    NEXUS_GFX_GL_GEN_TEXTURES,
+    NEXUS_GFX_GL_BIND_TEXTURE,
+    NEXUS_GFX_GL_TEX_IMAGE_2D,
+    NEXUS_GFX_GL_TEX_SUB_IMAGE_2D,
+    NEXUS_GFX_GL_DELETE_TEXTURES,
+    NEXUS_GFX_GL_IS_TEXTURE,
+    NEXUS_GFX_GL_GET_TEX_PARAMETERIV,
+
+    /* ---- GL framebuffers ---------------------------------------------- */
+    NEXUS_GFX_GL_GEN_FRAMEBUFFERS,
+    NEXUS_GFX_GL_BIND_FRAMEBUFFER,
+    NEXUS_GFX_GL_DELETE_FRAMEBUFFERS,
+    NEXUS_GFX_GL_GEN_RENDERBUFFERS,
+    NEXUS_GFX_GL_BIND_RENDERBUFFER,
+    NEXUS_GFX_GL_DELETE_RENDERBUFFERS,
+    NEXUS_GFX_GL_FRAMEBUFFER_TEXTURE_2D,
+    NEXUS_GFX_GL_FRAMEBUFFER_RENDERBUFFER,
+    NEXUS_GFX_GL_RENDERBUFFER_STORAGE,
+    NEXUS_GFX_GL_CHECK_FRAMEBUFFER_STATUS,
+
+    /* ---- GL shaders / programs ---------------------------------------- */
+    NEXUS_GFX_GL_CREATE_SHADER,
+    NEXUS_GFX_GL_SHADER_SOURCE,
+    NEXUS_GFX_GL_COMPILE_SHADER,
+    NEXUS_GFX_GL_GET_SHADERIV,
+    NEXUS_GFX_GL_GET_SHADER_INFO_LOG,
+    NEXUS_GFX_GL_GET_SHADER_PRECISION_FORMAT,
+    NEXUS_GFX_GL_DELETE_SHADER,
+    NEXUS_GFX_GL_CREATE_PROGRAM,
+    NEXUS_GFX_GL_ATTACH_SHADER,
+    NEXUS_GFX_GL_LINK_PROGRAM,
+    NEXUS_GFX_GL_GET_PROGRAMIV,
+    NEXUS_GFX_GL_GET_PROGRAM_INFO_LOG,
+    NEXUS_GFX_GL_DELETE_PROGRAM,
+    NEXUS_GFX_GL_USE_PROGRAM,
+    NEXUS_GFX_GL_GET_ACTIVE_UNIFORM,
+    NEXUS_GFX_GL_GET_ACTIVE_ATTRIB,
+    NEXUS_GFX_GL_GET_UNIFORM_LOCATION,
+    NEXUS_GFX_GL_GET_ATTRIB_LOCATION,
+
+    /* ---- GL uniforms / attributes ------------------------------------- */
+    NEXUS_GFX_GL_UNIFORM1I,
+    NEXUS_GFX_GL_UNIFORM1IV,
+    NEXUS_GFX_GL_UNIFORM1FV,
+    NEXUS_GFX_GL_UNIFORM2IV,
+    NEXUS_GFX_GL_UNIFORM2FV,
+    NEXUS_GFX_GL_UNIFORM3IV,
+    NEXUS_GFX_GL_UNIFORM3FV,
+    NEXUS_GFX_GL_UNIFORM4IV,
+    NEXUS_GFX_GL_UNIFORM4FV,
+    NEXUS_GFX_GL_UNIFORM_MATRIX2FV,
+    NEXUS_GFX_GL_UNIFORM_MATRIX3FV,
+    NEXUS_GFX_GL_UNIFORM_MATRIX4FV,
+    NEXUS_GFX_GL_ENABLE_VERTEX_ATTRIB_ARRAY,
+    NEXUS_GFX_GL_DISABLE_VERTEX_ATTRIB_ARRAY,
+    NEXUS_GFX_GL_VERTEX_ATTRIB_POINTER,
+
+    /* ---- GL draws / queries ------------------------------------------- */
+    NEXUS_GFX_GL_DRAW_ARRAYS,
+    NEXUS_GFX_GL_DRAW_ELEMENTS,
+    NEXUS_GFX_GL_GET_INTEGERV,
+    NEXUS_GFX_GL_GET_STRING,
+    NEXUS_GFX_GL_GET_ERROR,
+    NEXUS_GFX_GL_READ_PIXELS,
+} nexus_gfx_cmd;
+
+#endif /* NEXUS_ARM32_GFX_PROTOCOL_H */

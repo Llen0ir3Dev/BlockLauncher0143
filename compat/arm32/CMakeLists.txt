@@ -73,6 +73,25 @@ if(NEXUS_BUILD_GUEST_ARM32)
         VERBATIM)
 endif()
 
+# x86_64 host renderer.  The ARM32 guest forwards EGL/GLES2 over a Unix
+# socket; this process executes those calls against the real Mesa driver.
+# It is the only component allowed to touch the host's graphics stack.
+pkg_check_modules(EGL QUIET IMPORTED_TARGET egl)
+if(TARGET PkgConfig::EGL AND TARGET PkgConfig::GLES2)
+    add_executable(nexus_gfx_host ${CMAKE_CURRENT_SOURCE_DIR}/host/gfx_host.cpp)
+    nexus_target_defaults(nexus_gfx_host)
+    target_include_directories(nexus_gfx_host PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/gfx
+    )
+    target_link_libraries(nexus_gfx_host PRIVATE
+        PkgConfig::EGL
+        PkgConfig::GLES2
+        PkgConfig::SDL2
+    )
+else()
+    message(STATUS "EGL/GLES2 development files not found; nexus_gfx_host disabled")
+endif()
+
 # Core compatibility library
 file(GLOB_RECURSE ARM_COMPAT_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/shims/*.cpp

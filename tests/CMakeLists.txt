@@ -38,3 +38,19 @@ if(TARGET nexus AND TARGET nexus-runtime AND TARGET nexus-launcher)
             ${CMAKE_SOURCE_DIR})
   set_tests_properties(integration_cli PROPERTIES TIMEOUT 300)
 endif()
+
+# Graphics bridge: ARM32 guest (qemu-arm) drives the x86_64 host's real Mesa
+# GLES2 context.  Only runs when both halves and QEMU are available.
+if(TARGET nexus_gfx_host)
+  find_program(NEXUS_TEST_QEMU_ARM qemu-arm qemu-arm-static)
+  if(NEXUS_TEST_QEMU_ARM)
+    add_test(
+      NAME gfx_bridge_smoke
+      COMMAND bash ${CMAKE_SOURCE_DIR}/compat/arm32/tools/run_gfx_smoke.sh
+              $<TARGET_FILE:nexus_gfx_host>
+              ${NEXUS_TEST_QEMU_ARM}
+              ${CMAKE_BINARY_DIR}/guest-arm32/nexus_gfx_smoke
+              ${CMAKE_BINARY_DIR}/gfx-smoke.png)
+    set_tests_properties(gfx_bridge_smoke PROPERTIES TIMEOUT 120)
+  endif()
+endif()

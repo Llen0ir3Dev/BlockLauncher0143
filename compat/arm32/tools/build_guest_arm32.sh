@@ -104,10 +104,20 @@ python3 "${HERE}/patch_tls_align.py" "${OUT}/guest_smoke_static"
 # 1b. In-tree ARM32 ELF loader (shipping guest tool).  It parses, maps and
 #     relocates Android ARM32 shared objects without a device linker.
 "${CC[@]}" -O2 -fno-stack-protector -static -L"$OUT/lib" \
+    -I"${ROOT}/gfx" \
     "${ROOT}/guest/elf_loader.c" "${ROOT}/guest/bionic_symbols.c" \
     "${ROOT}/guest/bionic_shims.c" "${ROOT}/guest/jni_env.c" \
+    "${ROOT}/guest/gfx_client.c" \
     -o "${OUT}/nexus_elf_loader" -lm -lz -ldl
 python3 "${HERE}/patch_tls_align.py" "${OUT}/nexus_elf_loader"
+
+# 1c. Guest graphics bridge smoke test (EGL/GLES2 -> x86_64 host renderer).
+#     This is the proof that real GL calls cross the ARM32/x86_64 boundary.
+"${CC[@]}" -O2 -fno-stack-protector -static -L"$OUT/lib" \
+    -I"${ROOT}/gfx" \
+    "${ROOT}/guest/gfx_smoke.c" "${ROOT}/guest/gfx_client.c" \
+    -o "${OUT}/nexus_gfx_smoke"
+python3 "${HERE}/patch_tls_align.py" "${OUT}/nexus_gfx_smoke"
 
 # 2. JNI_OnLoad harness (development only).  This one is dynamically linked
 #    and therefore needs a bionic linker at run time; it is used on the dev
