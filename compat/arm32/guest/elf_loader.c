@@ -31,6 +31,13 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#include "loader_symbols.h"
+
+#if defined(__arm__)
+#include "bionic_shims.h"
+#include "jni_env.h"
+#endif
+
 #ifndef R_ARM_COPY
 #define R_ARM_COPY 20
 #endif
@@ -48,22 +55,22 @@
 #define MAP_FIXED_NOREPLACE 0x100000
 #endif
 
-#define NEXUS_MAX_REPORTED_SYMBOLS 64
+#define NEXUS_MAX_REPORTED_SYMBOLS 256
 #define NEXUS_PAGE 4096u
+#define NEXUS_MAX_SYMBOL_TABLES 8
 
-typedef struct {
-    const char* name;
-    void* address;
-} nexus_symbol_entry;
+static const nexus_symbol_entry* g_symbol_tables[NEXUS_MAX_SYMBOL_TABLES];
+static size_t g_symbol_counts[NEXUS_MAX_SYMBOL_TABLES];
+static size_t g_symbol_table_count = 0;
 
-static const nexus_symbol_entry* g_symbols = NULL;
-static size_t g_symbol_count = 0;
-
-// The host shim layer registers its exported ABI symbols here.  The loader
+// The guest shim layer registers its exported ABI symbols here.  The loader
 // stays independent of every specific shim.
-void nexus_loader_set_symbols(const nexus_symbol_entry* entries, size_t count) {
-    g_symbols = entries;
-    g_symbol_count = count;
+void nexus_loader_add_symbols(const nexus_symbol_entry* entries, size_t count) {
+    if (!entries || count == 0) return;
+    if (g_symbol_table_count >= NEXUS_MAX_SYMBOL_TABLES) return;
+    g_symbol_tables[g_symbol_table_count] = entries;
+    g_symbol_counts[g_symbol_table_count] = count;
+    g_symbol_table_count++;
 }
 
 typedef struct {
@@ -387,10 +394,13 @@ static int inspect(const char* path) {
 // The following mapping/relocation functions are only meaningful inside a
 // 32-bit ARM process; guard them so a host build produces no dead code.
 static void* resolve_in_table(const char* name) {
-    if (!name || !g_symbols) return NULL;
-    for (size_t i = 0; i < g_symbol_count; ++i) {
-        if (g_symbols[i].name && strcmp(g_symbols[i].name, name) == 0) {
-            return g_symbols[i].address;
+    if (!name) return NULL;
+    for (size_t t = 0; t < g_symbol_table_count; ++t) {
+        const nexus_symbol_entry* table = g_symbol_tables[t];
+        for (size_t i = 0; i < g_symbol_counts[t]; ++i) {
+            if (table[i].name && strcmp(table[i].name, name) == 0) {
+                return table[i].address;
+            }
         }
     }
     return NULL;
@@ -879,11 +889,12 @@ static void relocate_module_tree(nexus_module* m, nexus_reloc_stats* total) {
            " unresolved=%" PRId64 "\n",
            m->name, stats.total, stats.applied, stats.unresolved);
     if (stats.reported_count) {
-        for (size_t i = 0; i < stats.reported_count && i < 12; ++i) {
+        for (size_t i = 0; i < stats.reported_count; ++i) {
             printf("    unresolved: %s\n", stats.reported[i]);
         }
-        if (stats.reported_count > 12) {
-            printf("    ... %zu distinct names in total\n", stats.reported_count);
+        if (stats.reported_count >= NEXUS_MAX_REPORTED_SYMBOLS) {
+            printf("    ... (report capped at %d distinct names)\n",
+                   NEXUS_MAX_REPORTED_SYMBOLS);
         }
     }
     total->total += stats.total;
@@ -894,6 +905,10 @@ static void relocate_module_tree(nexus_module* m, nexus_reloc_stats* total) {
 
 static int load_tree(const char* path) {
     printf("NEXUS ARM32 dependency-tree load: %s\n", path);
+    // Register the guest bionic/Android shim symbols before resolving.
+    extern void nexus_register_bionic_symbols(void);
+    nexus_register_bionic_symbols();
+    nexus_register_android_shims();
     if (load_module(path, 0) != 0 || g_module_count == 0) {
         printf("nexus-loader: could not load %s\n", path);
         return 1;
@@ -907,7 +922,65 @@ static int load_tree(const char* path) {
     printf("  TOTAL: modules=%zu relocations=%" PRId64 " applied=%" PRId64
            " unresolved=%" PRId64 "\n",
            g_module_count, total.total, total.applied, total.unresolved);
-    printf("  note: init arrays and JNI/Android entry points are not called yet\n");
+    return 0;
+}
+
+/*
+ * Run the DT_INIT/DT_INIT_ARRAY constructors of every loaded module in
+ * dependency order (dependencies were appended after the main module, so the
+ * reverse order runs libgnustl_shared/libfmod before libminecraftpe).
+ *
+ * Constructors are real game code.  If one crashes, the process crashes; there
+ * is no "pretend it succeeded" path.
+ */
+static int run_init_arrays(void) {
+    for (size_t mi = g_module_count; mi-- > 0;) {
+        nexus_module* m = &g_modules[mi];
+        if (m->dyn.init) {
+            void (*init)(void) = (void (*)(void))(uintptr_t)(m->dyn.init + (uint32_t)m->bias);
+            printf("  init %-22s DT_INIT %p\n", m->name, (void*)init);
+            fflush(stdout);
+            init();
+        }
+        if (m->dyn.init_array && m->dyn.init_array_sz) {
+            uint32_t* entries = (uint32_t*)mapped_addr(m->base, m->min_vaddr, m->max_vaddr,
+                                                       m->dyn.init_array);
+            if (!entries) {
+                printf("  init %-22s init_array outside image\n", m->name);
+                return 1;
+            }
+            const size_t count = m->dyn.init_array_sz / sizeof(uint32_t);
+            printf("  init %-22s %zu constructor(s)\n", m->name, count);
+            fflush(stdout);
+            for (size_t i = 0; i < count; ++i) {
+                uint32_t addr = entries[i];
+                if (!addr) continue;
+                void (*ctor)(void) = (void (*)(void))(uintptr_t)addr;
+                ctor();
+            }
+        }
+    }
+    return 0;
+}
+
+static int run_jni_probe(const char* path, int log_calls) {
+    if (load_tree(path) != 0) return 1;
+    if (run_init_arrays() != 0) return 1;
+
+    void* fn = find_exported_symbol("JNI_OnLoad");
+    if (!fn) {
+        printf("  JNI_OnLoad: not exported\n");
+        return 1;
+    }
+    printf("  JNI_OnLoad: %p\n", fn);
+    fflush(stdout);
+    const jint version = nexus_run_jni_onload(fn, log_calls);
+    printf("  JNI_OnLoad result: 0x%x (%d)\n", (unsigned)version, (int)version);
+    if (version <= 0) {
+        printf("  FAIL: JNI_OnLoad did not return a JNI version\n");
+        return 1;
+    }
+    printf("  OK: genuine JNI_OnLoad executed in the in-tree ARM32 runtime\n");
     return 0;
 }
 
@@ -919,6 +992,8 @@ static void usage(const char* argv0) {
     printf("  %s --inspect FILE   parse an ARM32 ELF and report its needs\n", argv0);
     printf("  %s --load FILE      map and relocate in this process (ARM32 only)\n", argv0);
     printf("  %s --load-tree FILE map a module and its dependencies (ARM32 only)\n", argv0);
+    printf("  %s --jni-onload FILE [--quiet]\n"
+           "                      load, run constructors and call JNI_OnLoad (ARM32 only)\n", argv0);
     printf("  %s --help\n", argv0);
 }
 
@@ -950,6 +1025,15 @@ int main(int argc, char** argv) {
     if (strcmp(argv[1], "--load-tree") == 0) {
 #if defined(__arm__)
         return load_tree(argv[2]);
+#else
+        printf("nexus-loader: host is not ARM32; running inspection instead\n");
+        return inspect(argv[2]);
+#endif
+    }
+    if (strcmp(argv[1], "--jni-onload") == 0) {
+#if defined(__arm__)
+        const int log_calls = !(argc > 3 && strcmp(argv[3], "--quiet") == 0);
+        return run_jni_probe(argv[2], log_calls);
 #else
         printf("nexus-loader: host is not ARM32; running inspection instead\n");
         return inspect(argv[2]);

@@ -90,6 +90,10 @@ echo "  NDK       : $NDK"
 echo "  target    : $TRIPLE"
 echo "  output    : $OUT"
 
+# Regenerate the static-bionic symbol registry from the committed symbol list
+# so the guest can never silently drift from the imports it is meant to cover.
+python3 "${HERE}/gen_bionic_symbols.py"
+
 # 1. Portable static guest (the shipping model).
 #    -static produces a bionic executable; patch_tls_align makes it runnable
 #    under qemu-arm on any host.
@@ -100,7 +104,9 @@ python3 "${HERE}/patch_tls_align.py" "${OUT}/guest_smoke_static"
 # 1b. In-tree ARM32 ELF loader (shipping guest tool).  It parses, maps and
 #     relocates Android ARM32 shared objects without a device linker.
 "${CC[@]}" -O2 -fno-stack-protector -static -L"$OUT/lib" \
-    "${ROOT}/guest/elf_loader.c" -o "${OUT}/nexus_elf_loader"
+    "${ROOT}/guest/elf_loader.c" "${ROOT}/guest/bionic_symbols.c" \
+    "${ROOT}/guest/bionic_shims.c" "${ROOT}/guest/jni_env.c" \
+    -o "${OUT}/nexus_elf_loader" -lm -lz -ldl
 python3 "${HERE}/patch_tls_align.py" "${OUT}/nexus_elf_loader"
 
 # 2. JNI_OnLoad harness (development only).  This one is dynamically linked
